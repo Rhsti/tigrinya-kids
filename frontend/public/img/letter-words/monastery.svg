@@ -1,0 +1,8 @@
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monastery photo card">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c2a77a"/><stop offset="100%" stop-color="#6f4f2c"/></linearGradient></defs>
+  <rect width="900" height="600" fill="url(#g)"/>
+  <rect x="220" y="250" width="460" height="240" rx="18" fill="#e8dcc8"/>
+  <polygon points="200,250 450,130 700,250" fill="#8c5a36"/>
+  <rect x="420" y="300" width="60" height="190" fill="#704828"/>
+  <text x="50" y="560" fill="#fff" font-family="Verdana" font-size="52" font-weight="700">Monastery</text>
+</svg>

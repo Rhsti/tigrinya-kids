@@ -1,0 +1,8 @@
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Faith photo card">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8c7fff"/><stop offset="100%" stop-color="#4032a7"/></linearGradient></defs>
+  <rect width="900" height="600" fill="url(#g)"/>
+  <rect x="410" y="180" width="80" height="280" fill="#f3f0ff"/>
+  <rect x="330" y="250" width="240" height="70" fill="#f3f0ff"/>
+  <circle cx="450" cy="160" r="30" fill="#f7d56e"/>
+  <text x="50" y="560" fill="#fff" font-family="Verdana" font-size="52" font-weight="700">Faith</text>
+</svg>

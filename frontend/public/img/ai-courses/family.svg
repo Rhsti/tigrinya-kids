@@ -1,0 +1,15 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Family Conversation course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb385"/>
+      <stop offset="100%" stop-color="#f06b8b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="260" cy="160" r="120" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="980" cy="590" r="170" fill="rgba(255,255,255,0.16)"/>
+  <rect x="140" y="205" width="920" height="330" rx="40" fill="rgba(96,24,40,0.3)"/>
+  <text x="205" y="300" fill="#fff6f8" font-family="Georgia, serif" font-size="68" font-weight="700">Family Conversation</text>
+  <text x="205" y="372" fill="#ffe9ef" font-family="Verdana, sans-serif" font-size="35">Home Routines • Parent-Child Dialogue</text>
+  <text x="205" y="452" fill="#ffffff" font-family="Verdana, sans-serif" font-size="48" font-weight="700">Speak Together Daily</text>
+</svg>

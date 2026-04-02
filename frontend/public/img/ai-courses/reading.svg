@@ -1,0 +1,14 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reading Club course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5e7ce2"/>
+      <stop offset="100%" stop-color="#2b3f98"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <path d="M0 560 C220 510 420 660 640 580 C850 510 980 640 1200 560 L1200 720 L0 720 Z" fill="rgba(255,255,255,0.18)"/>
+  <rect x="150" y="190" width="900" height="350" rx="38" fill="rgba(9,20,78,0.35)"/>
+  <text x="215" y="300" fill="#eef1ff" font-family="Georgia, serif" font-size="72" font-weight="700">Reading Club</text>
+  <text x="215" y="374" fill="#dce5ff" font-family="Verdana, sans-serif" font-size="36">Stories • Comprehension • Read Aloud</text>
+  <text x="215" y="456" fill="#ffffff" font-family="Verdana, sans-serif" font-size="50" font-weight="700">Read with Confidence</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Basic Tigrinya course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2f7bbd"/>
+      <stop offset="100%" stop-color="#163f72"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="1040" cy="120" r="180" fill="rgba(255,255,255,0.14)"/>
+  <circle cx="220" cy="600" r="160" fill="rgba(255,255,255,0.1)"/>
+  <rect x="170" y="210" width="860" height="320" rx="34" fill="rgba(6,20,42,0.28)"/>
+  <text x="210" y="300" fill="#ffffff" font-family="Georgia, serif" font-size="70" font-weight="700">Basic Tigrinya</text>
+  <text x="210" y="368" fill="#dff0ff" font-family="Verdana, sans-serif" font-size="36">Letters • Sounds • First Words</text>
+  <text x="210" y="450" fill="#ffffff" font-family="Verdana, sans-serif" font-size="52" font-weight="700">ABC in Ge'ez Script</text>
+</svg>

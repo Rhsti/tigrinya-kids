@@ -1,0 +1,17 @@
+<svg width="800" height="560" viewBox="0 0 800 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="560" rx="36" fill="#F3F7FF"/>
+  <rect y="392" width="800" height="168" fill="#DCEBD6"/>
+  <rect x="120" y="160" width="560" height="214" rx="24" fill="#FFFFFF"/>
+  <rect x="154" y="194" width="232" height="146" rx="18" fill="#EAF2FF"/>
+  <rect x="414" y="194" width="232" height="146" rx="18" fill="#FFF2DE"/>
+  <circle cx="248" cy="235" r="35" fill="#F2C29B"/>
+  <path d="M215 230C215 206.252 234.252 187 258 187H264C287.748 187 307 206.252 307 230V235H215V230Z" fill="#374B7D"/>
+  <rect x="214" y="271" width="72" height="87" rx="18" fill="#5E7CE2"/>
+  <circle cx="530" cy="235" r="35" fill="#F2C29B"/>
+  <path d="M498 228C498 206.461 515.461 189 537 189H544C565.539 189 583 206.461 583 228V235H498V228Z" fill="#5A3B2E"/>
+  <rect x="494" y="271" width="76" height="87" rx="18" fill="#F39C55"/>
+  <path d="M334 290C334 273.431 347.431 260 364 260H443C459.569 260 473 273.431 473 290V311C473 327.569 459.569 341 443 341H364C347.431 341 334 327.569 334 311V290Z" fill="#FFD971"/>
+  <path d="M348 276H461L454 324H356L348 276Z" fill="#FFFFFF"/>
+  <text x="98" y="462" fill="#17324D" font-family="Verdana, sans-serif" font-size="28" font-weight="700">ናይ ንባብ መዓልቲ</text>
+  <text x="98" y="500" fill="#50657A" font-family="Verdana, sans-serif" font-size="22">Reading together at school and home</text>
+</svg>

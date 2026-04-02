@@ -1,0 +1,20 @@
+<svg width="800" height="560" viewBox="0 0 800 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="560" rx="36" fill="#EEF5FF"/>
+  <circle cx="655" cy="110" r="48" fill="#FFD36B"/>
+  <path d="M0 408C88 366 166 352 260 370C346 386 420 438 507 438C598 438 661 381 800 386V560H0V408Z" fill="#C7E7C8"/>
+  <path d="M88 222H292V392H88V222Z" fill="#F7B267"/>
+  <path d="M118 252H262V392H118V252Z" fill="#FFF4E5"/>
+  <rect x="142" y="286" width="42" height="42" fill="#8CC6FF"/>
+  <rect x="196" y="286" width="42" height="42" fill="#8CC6FF"/>
+  <rect x="142" y="340" width="42" height="42" fill="#8CC6FF"/>
+  <rect x="196" y="340" width="42" height="42" fill="#8CC6FF"/>
+  <path d="M72 222L190 142L308 222H72Z" fill="#D96C54"/>
+  <path d="M470 221C470 184.549 499.549 155 536 155H551C587.451 155 617 184.549 617 221V389H470V221Z" fill="#6C8CCB"/>
+  <circle cx="544" cy="163" r="38" fill="#F2C29B"/>
+  <path d="M514 161C514 136.699 533.699 117 558 117H560C584.301 117 604 136.699 604 161V167H514V161Z" fill="#2C3E63"/>
+  <rect x="518" y="202" width="76" height="116" rx="18" fill="#9A7CF5"/>
+  <path d="M594 241L657 220L684 347L621 365L594 241Z" fill="#FFD36B"/>
+  <path d="M602 252L648 240L665 322L619 334L602 252Z" fill="#FFFFFF"/>
+  <text x="68" y="474" fill="#17324D" font-family="Verdana, sans-serif" font-size="28" font-weight="700">ሳራ ናብ ቤት ትምህርቲ</text>
+  <text x="68" y="510" fill="#4F6478" font-family="Verdana, sans-serif" font-size="22">A school-day storytelling scene</text>
+</svg>

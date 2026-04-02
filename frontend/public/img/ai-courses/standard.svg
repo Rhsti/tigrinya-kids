@@ -1,0 +1,14 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Standard Tigrinya course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97757"/>
+      <stop offset="100%" stop-color="#8a2f4d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <path d="M0 620 C220 520 380 700 600 620 C820 540 930 680 1200 580 L1200 720 L0 720 Z" fill="rgba(255,255,255,0.16)"/>
+  <rect x="150" y="180" width="900" height="360" rx="36" fill="rgba(54,10,26,0.3)"/>
+  <text x="210" y="295" fill="#fff3ee" font-family="Georgia, serif" font-size="68" font-weight="700">Standard Tigrinya</text>
+  <text x="210" y="370" fill="#ffe4d9" font-family="Verdana, sans-serif" font-size="35">Games • Vocabulary • Writing</text>
+  <text x="210" y="452" fill="#ffffff" font-family="Verdana, sans-serif" font-size="48" font-weight="700">Core Learning Path</text>
+</svg>

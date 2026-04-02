@@ -1,0 +1,75 @@
+.course-card {
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  color: white;
+  padding: 35px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+}
+
+.course-card:active {
+  transform: scale(0.97);
+}
+
+/* Letter */
+.course-card .letter {
+  font-size: 52px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Footer */
+.course-card .card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/* Sound icon animation */
+.course-card .sound-icon {
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+
+.course-card:hover .sound-icon {
+  transform: scale(1.2);
+}
+
+/* Speaking animation */
+.course-card.speaking {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .course-card .letter {
+    font-size: 48px;
+  }
+  
+  .course-card .card-footer {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-card .letter {
+    font-size: 40px;
+  }
+}

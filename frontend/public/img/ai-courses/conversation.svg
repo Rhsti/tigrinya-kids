@@ -1,0 +1,18 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Speaking Confidence Bootcamp course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f39c55"/>
+      <stop offset="100%" stop-color="#c74a3b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <g fill="rgba(255,255,255,0.18)">
+    <rect x="120" y="90" width="130" height="130" rx="20"/>
+    <rect x="980" y="140" width="110" height="110" rx="18"/>
+    <rect x="910" y="520" width="190" height="140" rx="30"/>
+  </g>
+  <rect x="145" y="205" width="910" height="330" rx="40" fill="rgba(82,23,16,0.34)"/>
+  <text x="210" y="300" fill="#fff4ee" font-family="Georgia, serif" font-size="62" font-weight="700">Speaking Confidence Bootcamp</text>
+  <text x="210" y="372" fill="#ffe1d2" font-family="Verdana, sans-serif" font-size="35">Role Play • Real Situations • Fluency</text>
+  <text x="210" y="452" fill="#ffffff" font-family="Verdana, sans-serif" font-size="48" font-weight="700">Speak Clearly, Speak Boldly</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "name": "Tigrinya Kids",
+  "short_name": "TigrinyaKids",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fbff",
+  "theme_color": "#1a5f7a",
+  "description": "Interactive Tigrinya learning app for children and families.",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

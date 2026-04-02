@@ -1,0 +1,45 @@
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sheep photo card">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a8d5a2"/>
+      <stop offset="100%" stop-color="#5a9e52"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <!-- Ground -->
+  <ellipse cx="450" cy="520" rx="280" ry="30" fill="#4a7c40" opacity="0.5"/>
+  <!-- Body (fluffy wool) -->
+  <ellipse cx="450" cy="360" rx="160" ry="110" fill="#f5f5f0"/>
+  <ellipse cx="330" cy="340" rx="70" ry="65" fill="#efefea"/>
+  <ellipse cx="570" cy="340" rx="70" ry="65" fill="#efefea"/>
+  <ellipse cx="450" cy="270" rx="100" ry="70" fill="#f0f0eb"/>
+  <ellipse cx="390" cy="300" rx="75" ry="60" fill="#f5f5f0"/>
+  <ellipse cx="510" cy="300" rx="75" ry="60" fill="#f5f5f0"/>
+  <!-- Head -->
+  <ellipse cx="450" cy="240" rx="60" ry="55" fill="#d4c9a8"/>
+  <!-- Eyes -->
+  <circle cx="430" cy="228" r="7" fill="#222"/>
+  <circle cx="470" cy="228" r="7" fill="#222"/>
+  <circle cx="432" cy="226" r="2.5" fill="#fff"/>
+  <circle cx="472" cy="226" r="2.5" fill="#fff"/>
+  <!-- Nose -->
+  <ellipse cx="450" cy="255" rx="14" ry="9" fill="#c4a882"/>
+  <circle cx="444" cy="255" r="4" fill="#8a6040"/>
+  <circle cx="456" cy="255" r="4" fill="#8a6040"/>
+  <!-- Ears -->
+  <ellipse cx="398" cy="228" rx="18" ry="10" fill="#d4c9a8" transform="rotate(-20 398 228)"/>
+  <ellipse cx="502" cy="228" rx="18" ry="10" fill="#d4c9a8" transform="rotate(20 502 228)"/>
+  <!-- Legs -->
+  <rect x="370" y="440" width="30" height="80" rx="10" fill="#c8bda0"/>
+  <rect x="420" y="445" width="30" height="75" rx="10" fill="#c8bda0"/>
+  <rect x="470" y="445" width="30" height="75" rx="10" fill="#c8bda0"/>
+  <rect x="520" y="440" width="30" height="80" rx="10" fill="#c8bda0"/>
+  <!-- Hooves -->
+  <rect x="370" y="514" width="30" height="12" rx="5" fill="#4a3a28"/>
+  <rect x="420" y="514" width="30" height="12" rx="5" fill="#4a3a28"/>
+  <rect x="470" y="514" width="30" height="12" rx="5" fill="#4a3a28"/>
+  <rect x="520" y="514" width="30" height="12" rx="5" fill="#4a3a28"/>
+  <!-- Label -->
+  <text x="50" y="560" fill="#fff" font-family="Verdana" font-size="52" font-weight="700">Sheep</text>
+</svg>

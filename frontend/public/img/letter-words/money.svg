@@ -1,0 +1,9 @@
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Money photo card">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#84d39b"/><stop offset="100%" stop-color="#1e7b48"/></linearGradient></defs>
+  <rect width="900" height="600" fill="url(#g)"/>
+  <rect x="220" y="220" width="460" height="220" rx="24" fill="#d9f8e3"/>
+  <rect x="250" y="250" width="460" height="220" rx="24" fill="#b7efcb"/>
+  <circle cx="480" cy="360" r="55" fill="#55a56f"/>
+  <text x="463" y="376" fill="#fff" font-family="Verdana" font-size="34" font-weight="700">$</text>
+  <text x="50" y="560" fill="#fff" font-family="Verdana" font-size="52" font-weight="700">Money</text>
+</svg>

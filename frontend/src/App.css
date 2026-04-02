@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap");
+
+:root {
+  --font-sans: "Manrope", "Noto Sans Ethiopic", "Segoe UI", sans-serif;
+  --font-heading: "Fraunces", Georgia, serif;
+  font-family: var(--font-sans);
+  color: #15304a;
+  --surface-border: rgba(19, 49, 75, 0.08);
+  --surface-shadow: 0 22px 44px rgba(18, 55, 84, 0.12);
+  --accent-teal: #1f7a6c;
+  --accent-blue: #1a5f7a;
+  --bg-main:
+    radial-gradient(circle at top left, rgba(254, 211, 124, 0.28), transparent 30%),
+    radial-gradient(circle at top right, rgba(70, 147, 255, 0.18), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 48%, #f6efe5 100%);
+  --bg-overlay:
+    radial-gradient(520px circle at 8% 12%, rgba(243, 197, 107, 0.2), transparent 72%),
+    radial-gradient(520px circle at 92% 16%, rgba(31, 122, 108, 0.14), transparent 72%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(19, 49, 75, 0.015) 0,
+      rgba(19, 49, 75, 0.015) 1px,
+      transparent 1px,
+      transparent 36px
+    );
+  background: var(--bg-main);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #15304a;
+  background: var(--bg-main);
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: var(--bg-overlay);
+}
+
+body[data-theme="sunny"] {
+  --bg-main:
+    radial-gradient(circle at top left, rgba(254, 211, 124, 0.28), transparent 30%),
+    radial-gradient(circle at top right, rgba(70, 147, 255, 0.18), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 48%, #f6efe5 100%);
+  --bg-overlay:
+    radial-gradient(520px circle at 8% 12%, rgba(243, 197, 107, 0.2), transparent 72%),
+    radial-gradient(520px circle at 92% 16%, rgba(31, 122, 108, 0.14), transparent 72%),
+    repeating-linear-gradient(90deg, rgba(19, 49, 75, 0.015) 0, rgba(19, 49, 75, 0.015) 1px, transparent 1px, transparent 36px);
+}
+
+body[data-theme="ocean"] {
+  --bg-main:
+    radial-gradient(circle at top left, rgba(119, 210, 255, 0.28), transparent 32%),
+    radial-gradient(circle at top right, rgba(76, 241, 210, 0.18), transparent 30%),
+    linear-gradient(180deg, #f3fbff 0%, #e6f3ff 46%, #e8fcf7 100%);
+  --bg-overlay:
+    radial-gradient(520px circle at 10% 14%, rgba(74, 176, 232, 0.18), transparent 72%),
+    radial-gradient(520px circle at 90% 14%, rgba(31, 122, 108, 0.16), transparent 72%),
+    repeating-linear-gradient(90deg, rgba(14, 67, 102, 0.016) 0, rgba(14, 67, 102, 0.016) 1px, transparent 1px, transparent 34px);
+}
+
+body[data-theme="night"] {
+  color: #e9f2ff;
+  --bg-main:
+    radial-gradient(circle at top left, rgba(120, 103, 207, 0.2), transparent 32%),
+    radial-gradient(circle at top right, rgba(35, 167, 180, 0.16), transparent 30%),
+    linear-gradient(180deg, #111a29 0%, #101c2f 48%, #18243a 100%);
+  --bg-overlay:
+    radial-gradient(540px circle at 12% 12%, rgba(109, 85, 180, 0.16), transparent 74%),
+    radial-gradient(540px circle at 88% 18%, rgba(31, 122, 108, 0.14), transparent 74%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0, rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 34px);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(243, 197, 107, 0.8);
+  outline-offset: 2px;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+.button-primary {
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #1f7a6c 0%, #1a5f7a 100%);
+  box-shadow: 0 16px 36px rgba(22, 83, 102, 0.22);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(22, 83, 102, 0.28);
+}
+
+.button-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.88);
+  color: #17324d;
+  box-shadow: inset 0 0 0 1px rgba(23, 50, 77, 0.12);
+}
+
+.button-secondary:hover {
+  box-shadow: inset 0 0 0 1px rgba(23, 50, 77, 0.12), 0 18px 34px rgba(23, 50, 77, 0.14);
+}
+
+@keyframes soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-panel,
+.pricing-card,
+.dashboard-header,
+.lesson-card,
+.section-card {
+  animation: soft-rise 360ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+  }
+
+  .button-primary,
+  .button-secondary {
+    width: 100%;
+    min-height: 44px;
+  }
+}

@@ -1,0 +1,18 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phonics and Sound Lab course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#46b58d"/>
+      <stop offset="100%" stop-color="#0b5e73"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <g fill="rgba(255,255,255,0.16)">
+    <circle cx="220" cy="200" r="90"/>
+    <circle cx="980" cy="160" r="70"/>
+    <circle cx="940" cy="530" r="130"/>
+  </g>
+  <rect x="150" y="205" width="900" height="330" rx="40" fill="rgba(2,34,44,0.34)"/>
+  <text x="215" y="300" fill="#e8fffa" font-family="Georgia, serif" font-size="66" font-weight="700">Phonics and Sound Lab</text>
+  <text x="215" y="372" fill="#d4fff4" font-family="Verdana, sans-serif" font-size="35">Listening • Pronunciation • Sound Drills</text>
+  <text x="215" y="452" fill="#ffffff" font-family="Verdana, sans-serif" font-size="48" font-weight="700">Sharpen Every Syllable</text>
+</svg>

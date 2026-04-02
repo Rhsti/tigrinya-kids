@@ -1,0 +1,14 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Storytelling Mastery course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7f7fd5"/>
+      <stop offset="100%" stop-color="#51a7f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <path d="M0 120 C260 230 430 40 690 130 C910 206 1020 90 1200 160 L1200 0 L0 0 Z" fill="rgba(255,255,255,0.16)"/>
+  <rect x="145" y="210" width="910" height="320" rx="38" fill="rgba(24,30,89,0.34)"/>
+  <text x="210" y="305" fill="#f4f4ff" font-family="Georgia, serif" font-size="68" font-weight="700">Storytelling Mastery</text>
+  <text x="210" y="377" fill="#e2ecff" font-family="Verdana, sans-serif" font-size="35">Narrative Flow • Fluency • Confidence</text>
+  <text x="210" y="455" fill="#ffffff" font-family="Verdana, sans-serif" font-size="48" font-weight="700">Speak with Expression</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Premium Tigrinya course art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f7a6c"/>
+      <stop offset="100%" stop-color="#0d4f57"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <g fill="rgba(255,255,255,0.14)">
+    <rect x="120" y="80" width="160" height="160" rx="24"/>
+    <rect x="920" y="470" width="180" height="180" rx="28"/>
+  </g>
+  <rect x="160" y="190" width="880" height="340" rx="36" fill="rgba(0,28,32,0.34)"/>
+  <text x="225" y="300" fill="#ecfffb" font-family="Georgia, serif" font-size="72" font-weight="700">Premium Tigrinya</text>
+  <text x="225" y="374" fill="#d5fff6" font-family="Verdana, sans-serif" font-size="35">Fluency • Video Lessons • Coaching</text>
+  <text x="225" y="454" fill="#ffffff" font-family="Verdana, sans-serif" font-size="50" font-weight="700">Elite Learning Track</text>
+</svg>

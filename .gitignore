@@ -1,0 +1,13 @@
+# Environment files
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Sensitive config/key files
+config.json
+**/config.json
+keys.txt
+**/keys.txt
+
+echo "backend/.env" >> .gitignore

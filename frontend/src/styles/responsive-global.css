@@ -1,0 +1,247 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.home,
+.dashboard,
+.pricing-container,
+.lessons-page,
+.game-container {
+  width: 100%;
+}
+
+.hero-panel,
+.section-card,
+.panel-surface,
+.pricing-card,
+.lesson-view,
+.auth-form,
+.dashboard-header,
+.streak-panel,
+.progress-section,
+.action-card,
+.no-courses,
+.game-container,
+.parent-panel {
+  max-width: 100%;
+}
+
+.pricing-grid,
+.course-preview-cards,
+.purchased-courses-grid,
+.courses-grid,
+.actions-grid,
+.stats-grid,
+.parent-grid,
+.parent-stats,
+.drag-layout,
+.letters-row,
+.targets-row,
+.memory-grid,
+.quiz-choice-grid,
+.leaderboard-list {
+  min-width: 0;
+}
+
+.course-preview-card,
+.purchased-course-card,
+.pricing-card,
+.course-card,
+.my-course-card,
+.action-card,
+.lesson-card,
+.parent-block,
+.leaderboard-item,
+.drop-slot,
+.word-chip,
+.quiz-choice {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .home,
+  .dashboard,
+  .pricing-container,
+  .lessons-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-panel,
+  .section-card,
+  .panel-surface,
+  .pricing-header,
+  .dashboard-header,
+  .lesson-content,
+  .lesson-view,
+  .streak-panel,
+  .progress-section {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home,
+  .dashboard,
+  .pricing-container,
+  .lessons-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero-panel,
+  .section-card,
+  .panel-surface,
+  .pricing-header,
+  .dashboard-header,
+  .lesson-content,
+  .lesson-view,
+  .streak-panel,
+  .progress-section,
+  .auth-form,
+  .game-container {
+    border-radius: 16px;
+  }
+
+  .hero-actions,
+  .cta-buttons,
+  .drag-actions,
+  .video-timer-actions,
+  .lesson-nav-actions,
+  .mode-controls {
+    flex-direction: column;
+  }
+
+  .hero-actions > *,
+  .cta-buttons > *,
+  .drag-actions > *,
+  .video-timer-actions > *,
+  .lesson-nav-actions > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .home,
+  .dashboard,
+  .pricing-container,
+  .lessons-page,
+  .auth-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .hero-panel,
+  .section-card,
+  .panel-surface,
+  .pricing-header,
+  .pricing-card,
+  .dashboard-header,
+  .lesson-content,
+  .lesson-view,
+  .streak-panel,
+  .progress-section,
+  .auth-form,
+  .game-container,
+  .footer-section {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    font-size: 13.5px;
+  }
+
+  .home,
+  .dashboard,
+  .pricing-container,
+  .lessons-page,
+  .auth-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .hero-panel,
+  .section-card,
+  .panel-surface,
+  .pricing-header,
+  .pricing-card,
+  .dashboard-header,
+  .lesson-content,
+  .lesson-view,
+  .streak-panel,
+  .progress-section,
+  .auth-form,
+  .game-container,
+  .footer-section {
+    border-radius: 12px;
+  }
+
+  .button-primary,
+  .button-secondary,
+  .buy-btn,
+  .start-btn,
+  .complete-btn,
+  .activity-btn,
+  .streak-action,
+  .start-learning-btn {
+    min-height: 42px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    font-size: 13px;
+  }
+
+  .home,
+  .dashboard,
+  .pricing-container,
+  .lessons-page,
+  .auth-container {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .hero-panel,
+  .section-card,
+  .panel-surface,
+  .pricing-header,
+  .pricing-card,
+  .dashboard-header,
+  .lesson-content,
+  .lesson-view,
+  .streak-panel,
+  .progress-section,
+  .auth-form,
+  .game-container,
+  .footer-section {
+    border-radius: 10px;
+  }
+
+  .hero-badge,
+  .section-kicker,
+  .streak-kicker,
+  .course-chip,
+  .pricing-meta-row span {
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    padding: 5px 8px;
+  }
+}

@@ -8,12 +8,14 @@ const Course = require("./models/Course");
 const defaultCourses = require("./data/defaultCourses");
 const { logStripeDiagnostics } = require("./utils/stripeConfig");
 
-app.get("/", (req, res) => {
-  res.send("Backend is running! Use /api routes for requests.");
-});
 
 const app = express();
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+// Root route
+app.get("/", (req, res) => {
+  res.send("Backend is running! Use /auth, /payment, /letters, or /health for API requests.");
+});
 
 async function seedCourses() {
   for (const course of defaultCourses) {

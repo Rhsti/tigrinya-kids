@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://tigrinya-kids-mrdg7d43h-rhstis-projects.vercel.app"
+    "https://tigrinya-kids-oitjwwu4z-rhstis-projects.vercel.app/pricing"
   ],
   credentials: true
 }));

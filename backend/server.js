@@ -10,13 +10,30 @@ const { logStripeDiagnostics } = require("./utils/stripeConfig");
 
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173"
+  // You can add custom domains here if needed
+];
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://tigrinya-kids-oitjwwu4z-rhstis-projects.vercel.app"
-  ],
+  origin: function(origin, callback){
+    // allow requests with no origin like mobile apps or curl
+    if(!origin) return callback(null, true);
+
+    // allow localhost and any vercel.app domain
+    if(origin.startsWith("https://") && origin.includes(".vercel.app")){
+      return callback(null, true);
+    }
+
+    if(allowedOrigins.indexOf(origin) !== -1){
+      return callback(null, true);
+    }
+
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
+
 
 // Root route
 app.get("/", (req, res) => {

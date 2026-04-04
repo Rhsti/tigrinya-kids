@@ -18,6 +18,7 @@
 
 .game-container {
   max-width: 980px;
+  width: min(980px, calc(100% - 20px));
   margin: 32px auto;
   padding: 32px 22px;
   position: relative;
@@ -85,6 +86,7 @@
   background: rgba(255, 255, 255, 0.85);
   color: var(--tgk-text);
   padding: 8px 14px;
+  min-height: 42px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
@@ -144,7 +146,7 @@
 .letters-row,
 .targets-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
   gap: 14px;
   margin: 20px 0;
 }
@@ -238,7 +240,8 @@
 }
 
 .word-img-card {
-  width: 110px;
+  width: min(110px, calc(50% - 8px));
+  min-width: 86px;
   border-radius: 18px;
   background: linear-gradient(135deg, #1f7a6c, #1a5f7a);
   color: #fff;
@@ -302,6 +305,7 @@
   display: grid;
   place-items: center;
   padding: 8px 14px;
+  text-align: center;
   cursor: default;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
   user-select: none;
@@ -738,7 +742,96 @@
   }
 
   .leaderboard-item {
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 6px;
+  }
+
+  .leaderboard-item strong {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-container {
+    width: calc(100% - 14px);
+    margin: 14px auto;
+    padding: 18px 10px;
+    border-radius: 18px;
+  }
+
+  .game-container h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .game-subtitle {
+    margin: 8px auto 14px;
+  }
+
+  .letters-row,
+  .targets-row,
+  .memory-grid,
+  .quiz-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .word-img-bank {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .word-img-card {
+    width: 100%;
+  }
+
+  .word-target-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .word-drop-target {
+    width: 100%;
+  }
+
+  .scoreboard {
+    justify-content: stretch;
+  }
+
+  .score-pill {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 420px) {
+  .letter,
+  .target {
+    min-height: 64px;
+    border-radius: 14px;
+    font-size: 1.5rem;
+  }
+
+  .memory-card {
+    min-height: 64px;
+    font-size: 1.4rem;
+  }
+
+  .memory-word-card {
+    min-height: 72px;
+  }
+
+  .quiz-panel {
+    padding: 14px 10px;
+    border-radius: 14px;
+  }
+
+  .success {
+    padding: 12px 10px;
+  }
+
+  .success button {
+    width: 100%;
   }
 }
 

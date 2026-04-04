@@ -109,29 +109,29 @@ const courseLessons = {
       { id: 5, title: "Practice Session", type: "practice", duration: "15 min", content: { practicePrompt: "Write 2 greetings and 1 thank-you phrase in Tigrinya." } }
     ]
   },
-  standard: {
-    title: "Standard Tigrinya",
-    description: "Complete learning with interactive games",
+  intermediate: {
+    title: "Intermediate Tigrinya",
+    description: "Words Tigrinya course focused on practical vocabulary",
     color: "linear-gradient(135deg, #f093fb, #f5576c)",
     lessons: [
-      { id: 1, title: "Basic Review", type: "video", duration: "5 min", content: { videoPrompt: "Review daily conversation and polite responses." } },
-      { id: 2, title: "Advanced Letters", type: "reading", duration: "12 min", content: { lines: [{ ti: "ቀ ቁ ቂ", en: "qa qu qi" }, { ti: "ጸ ጹ ጺ", en: "tsa tsu tsi" }], readingTask: "Read and identify each letter sound." } },
+      { id: 1, title: "Words Foundation", type: "video", duration: "5 min", content: { videoPrompt: "Learn core Tigrinya words and where to use them." } },
+      { id: 2, title: "Everyday Words", type: "reading", duration: "12 min", content: { lines: [{ ti: "ቤት", en: "house" }, { ti: "መግቢ", en: "food" }], readingTask: "Read each word and remember the meaning." } },
       { id: 3, title: "Interactive Games", type: "game", duration: "20 min", content: { gameVariants: [{ question: "Type the Tigrinya word for school", expected: "ቤት ትምህርቲ", difficulty: "easy" }, { question: "Type the Tigrinya word for friend", expected: "ተርን", difficulty: "medium" }, { question: "Type the Tigrinya word for king", expected: "ንጉስ", difficulty: "hard" }] } },
-      { id: 4, title: "Writing Practice", type: "practice", duration: "15 min", content: { practicePrompt: "Write 3 family words and 2 places in Tigrinya." } },
+      { id: 4, title: "Word Practice", type: "practice", duration: "15 min", content: { practicePrompt: "Write 5 common Tigrinya words and their English meaning." } },
       { id: 5, title: "Vocabulary Building", type: "quiz", duration: "10 min", content: { quizVariants: [{ question: "Which word means school?", choices: ["ቤት ትምህርቲ", "መግቢ", "ሓው"], correct: "ቤት ትምህርቲ", hint: "It starts with ቤት", difficulty: "easy" }, { question: "Which word means food?", choices: ["መግቢ", "ንጉስ", "ሰላም"], correct: "መግቢ", hint: "It starts with መ", difficulty: "medium" }, { question: "Which word means brother?", choices: ["ሓው", "ቤት", "መኪና"], correct: "ሓው", hint: "It starts with ሓ", difficulty: "hard" }] } },
       { id: 6, title: "Speaking Practice", type: "audio", duration: "10 min", content: { phrases: ["ኣነ ተማሃሪ እየ", "ኣይተ ደሓን ኣሎ", "ብዙሕ የቐንየለይ"] } }
     ]
   },
-  premium: {
-    title: "Premium Tigrinya",
-    description: "Ultimate learning experience",
+  advanced: {
+    title: "Advanced Tigrinya",
+    description: "English sentence practice for advanced learners",
     color: "linear-gradient(135deg, #4facfe, #00f2fe)",
     lessons: [
-      { id: 1, title: "Full Course Access", type: "video", duration: "30 min", content: { videoPrompt: "Watch advanced storytelling and sentence structure session." } },
-      { id: 2, title: "All Letter Forms", type: "reading", duration: "20 min", content: { lines: [{ ti: "ከ ኩ ኪ ካ ኬ ክ ኮ", en: "ka series" }, { ti: "ገ ጉ ጊ ጋ ጌ ግ ጎ", en: "ga series" }], readingTask: "Read both full letter families clearly." } },
+      { id: 1, title: "English Sentence Meaning", type: "video", duration: "30 min", content: { videoPrompt: "Learn how to understand and respond to English sentence meanings in Tigrinya context." } },
+      { id: 2, title: "Sentence Reading", type: "reading", duration: "20 min", content: { lines: [{ ti: "ኣነ ናብ ቤት ትምህርቲ እኸይድ", en: "I go to school" }, { ti: "ንሕና ብሓባር ንምሃር", en: "We learn together" }], readingTask: "Read each sentence and explain the English meaning." } },
       { id: 3, title: "Advanced Games", type: "game", duration: "25 min", content: { gameVariants: [{ question: "Type the Tigrinya phrase for Good morning", expected: "እንቋዕ ንግሆ", difficulty: "easy" }, { question: "Type the phrase for My name is...", expected: "ኣነ ስመይ", difficulty: "medium" }, { question: "Type the phrase for Thank you very much", expected: "ብዙሕ የቐንየለይ", difficulty: "hard" }] } },
-      { id: 4, title: "Expert Writing", type: "practice", duration: "20 min", content: { practicePrompt: "Write a 2-line self-introduction in Tigrinya." } },
-      { id: 5, title: "Video Lessons", type: "video", duration: "45 min", content: { videoPrompt: "Watch conversation between student and teacher." } },
+      { id: 4, title: "Sentence Practice", type: "practice", duration: "20 min", content: { practicePrompt: "Write 3 English sentences and translate them into Tigrinya." } },
+      { id: 5, title: "Advanced Sentence Video", type: "video", duration: "45 min", content: { videoPrompt: "Watch advanced sentence examples and meaning checks." } },
       { id: 6, title: "1-on-1 Tutoring Session", type: "audio", duration: "30 min", content: { phrases: ["ኣነ ስመይ ...", "ኣነ ካብ ... እየ", "እቲ ትምህርቲ ደስ ይብለኒ"] } },
       { id: 7, title: "Certificate Assessment", type: "quiz", duration: "15 min", content: { quizVariants: [{ question: "Choose the correct phrase for 'My name is ...'", choices: ["ኣነ ስመይ ...", "እዚ መጽሓፍ እዩ", "እኔ እየ"], correct: "ኣነ ስመይ ...", hint: "Starts with ኣነ", difficulty: "easy" }, { question: "Choose the phrase for Good morning", choices: ["እንቋዕ ንግሆ", "ርካሽ እንበል", "ቤት ትምህርቲ"], correct: "እንቋዕ ንግሆ", hint: "Starts with እ", difficulty: "medium" }, { question: "Choose the phrase for Thank you very much", choices: ["ብዙሕ የቐንየለይ", "ኣነ ተማሃሪ", "ንጉስ"], correct: "ብዙሕ የቐንየለይ", hint: "Starts with ብ", difficulty: "hard" }] } }
     ]
@@ -344,29 +344,29 @@ function LessonContent({
           },
         },
       },
-      standard: {
+      intermediate: {
         1: {
           videoUrl: sharedE,
           backupVideoUrl: sharedF,
-          coveredTopics: ["Conversation review", "Polite responses", "Daily practice setup"],
+          coveredTopics: ["Word meaning", "Everyday vocabulary", "Word usage setup"],
           checkpoint: {
             question: "What is this lesson mainly reviewing?",
-            choices: ["Daily conversation", "Math drills", "Only writing symbols"],
-            correct: "Daily conversation",
-            hint: "Focus on speaking use-cases.",
+            choices: ["Everyday Tigrinya words", "Math drills", "Only writing symbols"],
+            correct: "Everyday Tigrinya words",
+            hint: "Focus on vocabulary.",
           },
         },
       },
-      premium: {
+      advanced: {
         1: {
           videoUrl: sharedD,
           backupVideoUrl: sharedC,
-          coveredTopics: ["Advanced sentence flow", "Story framing", "Speaking confidence"],
+          coveredTopics: ["English sentence meaning", "Sentence flow", "Advanced comprehension"],
           checkpoint: {
-            question: "Which skill is emphasized first in this premium video?",
-            choices: ["Sentence flow", "Alphabet tracing", "Typing only"],
-            correct: "Sentence flow",
-            hint: "Think advanced fluency.",
+            question: "Which skill is emphasized first in this advanced video?",
+            choices: ["English sentence meaning", "Alphabet tracing", "Typing only"],
+            correct: "English sentence meaning",
+            hint: "Think sentence comprehension.",
           },
         },
         5: {
@@ -1157,6 +1157,7 @@ function LessonList({ course, completedLessons, lessonScores, lessonSteps, onSel
 
 export default function Lessons() {
   const { courseId } = useParams();
+  const allowedCourseIds = new Set(["basic", "intermediate", "advanced"]);
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [currentLesson, setCurrentLesson] = useState(null);
@@ -1177,6 +1178,11 @@ export default function Lessons() {
 
     const loadData = async () => {
       try {
+        if (!allowedCourseIds.has(courseId)) {
+          setAccessDeniedMessage("This course is no longer available.");
+          return;
+        }
+
         await checkCourseAccess(courseId);
         const coursesData = await getMyCourses();
         const purchased = coursesData.purchasedCourses || [];

@@ -56,6 +56,12 @@ async function seedCourses() {
       { upsert: true }
     );
   }
+
+  const activeCourseIds = defaultCourses.map((course) => course.courseId);
+  await Course.updateMany(
+    { courseId: { $nin: activeCourseIds } },
+    { $set: { isActive: false } }
+  );
 }
 
 // Stripe webhook requires raw body, so it must be registered before express.json().

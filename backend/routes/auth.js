@@ -129,7 +129,7 @@ async function getUserByResetToken(tokenHash) {
 // POST /auth/register
 router.post('/register', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, name } = req.body;
     if (!email || !password)
       return res.status(400).json({ message: 'Email and password are required' });
 
@@ -141,7 +141,10 @@ router.post('/register', async (req, res) => {
 
     let welcomeEmailSent = false;
     try {
-      welcomeEmailSent = await sendWelcomeEmail({ toEmail: result.user.email });
+      welcomeEmailSent = await sendWelcomeEmail({
+        toEmail: result.user.email,
+        displayName: name,
+      });
     } catch (emailErr) {
       console.warn('Welcome email failed:', emailErr.message);
     }

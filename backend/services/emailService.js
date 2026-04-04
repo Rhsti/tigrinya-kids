@@ -2,6 +2,24 @@ const nodemailer = require('nodemailer');
 
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
+const formatDisplayName = (value, fallbackEmail) => {
+  const rawName = String(value || '').trim();
+  if (rawName) {
+    return rawName;
+  }
+
+  const emailPrefix = String(fallbackEmail || '').split('@')[0] || 'Learner';
+  const withSpaces = emailPrefix.replace(/[._-]+/g, ' ').trim();
+  if (!withSpaces) {
+    return 'Learner';
+  }
+
+  return withSpaces
+    .split(/\s+/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(' ');
+};
+
 const hasRealSmtpConfig = () => {
   const host = String(process.env.SMTP_HOST || '').trim();
   const user = String(process.env.SMTP_USER || '').trim();
@@ -63,15 +81,17 @@ async function sendPurchaseConfirmationEmail({ toEmail, course, paymentMethod = 
   return true;
 }
 
-async function sendWelcomeEmail({ toEmail }) {
+async function sendWelcomeEmail({ toEmail, displayName }) {
   const transporter = buildTransporter();
   if (!transporter || !toEmail) {
     return false;
   }
 
+  const learnerName = formatDisplayName(displayName, toEmail);
   const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER;
   const lines = [
-    `Welcome to Tigrinya Kids!`,
+    `Welcome to our site, Tigrinya Kids!`,
+    `Hi ${learnerName},`,
     `Your account has been created successfully.`,
     `Start learning here: ${FRONTEND_URL}/dashboard`,
     `If you did not create this account, please contact support immediately.`,
@@ -81,9 +101,10 @@ async function sendWelcomeEmail({ toEmail }) {
     <div style="font-family: 'Segoe UI', Arial, sans-serif; background: #f6fbff; padding: 24px; color: #16324d;">
       <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border-radius: 14px; border: 1px solid #dbe8f5; overflow: hidden;">
         <div style="padding: 16px 20px; background: linear-gradient(135deg, #1f7a6c, #1a5f7a); color: #ffffff; font-weight: 700; font-size: 18px;">
-          Welcome to Tigrinya Kids
+          Welcome to our site, Tigrinya Kids
         </div>
         <div style="padding: 20px; line-height: 1.6;">
+          <p style="margin: 0 0 12px;">Hi ${learnerName},</p>
           <p style="margin: 0 0 12px;">Your account has been created successfully.</p>
           <p style="margin: 0 0 16px;">Start learning Tigrinya with guided lessons and progress tracking.</p>
           <a href="${FRONTEND_URL}/dashboard" style="display: inline-block; padding: 10px 14px; border-radius: 999px; background: #1a5f7a; color: #ffffff; text-decoration: none; font-weight: 700;">Go to Dashboard</a>
@@ -96,7 +117,7 @@ async function sendWelcomeEmail({ toEmail }) {
   await transporter.sendMail({
     from: fromAddress,
     to: toEmail,
-    subject: 'Welcome to Tigrinya Kids',
+    subject: 'Welcome to our site - Tigrinya Kids',
     text: lines.join('\n'),
     html,
   });

@@ -37,6 +37,16 @@
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+.hero-panel::before,
+.panel-surface::before,
+.section-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 38%);
+}
+
 .panel-surface:hover,
 .section-card:hover {
   transform: translateY(-3px);
@@ -83,6 +93,7 @@
 .upgrade-prompt p {
   color: #53657a;
   line-height: 1.7;
+  max-width: 64ch;
 }
 
 .hero-badge,
@@ -107,6 +118,13 @@
   gap: 14px;
   flex-wrap: wrap;
   margin-top: 24px;
+}
+
+.hero-actions .button-primary,
+.hero-actions .button-secondary,
+.cta-buttons .button-primary,
+.cta-buttons .button-secondary {
+  min-height: 46px;
 }
 
 .hero-note-card,
@@ -193,7 +211,7 @@
 
 .course-preview-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
   margin-bottom: 30px;
 }
@@ -227,6 +245,16 @@
 
 .course-preview-content {
   padding: 18px;
+}
+
+.course-preview-content,
+.purchased-course-card > h3,
+.purchased-course-card > p,
+.purchased-course-card > ul,
+.purchased-course-card > .course-card-button,
+.purchased-course-card > .course-chip-row {
+  position: relative;
+  z-index: 1;
 }
 
 .course-preview-level {
@@ -274,7 +302,7 @@
 
 .purchased-courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
 }
 
@@ -387,6 +415,8 @@
   align-items: end;
   gap: 16px;
   margin-bottom: 22px;
+  border-bottom: 1px solid rgba(19, 49, 75, 0.1);
+  padding-bottom: 12px;
 }
 
 .game-section {
@@ -450,11 +480,11 @@
   }
 
   .course-preview-cards {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .purchased-courses-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .welcome-section h1 {

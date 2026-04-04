@@ -135,7 +135,7 @@ function App() {
             <Home />
           </ProtectedRoute>
         } />
-        
+
         {/* Pricing page - accessible to everyone */}
         <Route path="/pricing" element={<Pricing />} />
         

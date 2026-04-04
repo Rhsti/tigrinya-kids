@@ -3,6 +3,14 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
 img,
 video,
 svg,
@@ -67,6 +75,38 @@ canvas {
   min-width: 0;
 }
 
+.hero-copy,
+.hero-aside,
+.section-heading,
+.lesson-info,
+.status-message,
+.leaderboard-item,
+.quiz-panel h3,
+.quiz-choice,
+.word-drop-target,
+.word-img-card {
+  overflow-wrap: anywhere;
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .pricing-grid,
+  .course-preview-cards,
+  .purchased-courses-grid,
+  .courses-grid,
+  .actions-grid,
+  .stats-grid,
+  .parent-grid,
+  .parent-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1024px) {
   .home,
   .dashboard,
@@ -93,7 +133,8 @@ canvas {
   .home,
   .dashboard,
   .pricing-container,
-  .lessons-page {
+  .lessons-page,
+  .game-page {
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -125,7 +166,31 @@ canvas {
   .cta-buttons > *,
   .drag-actions > *,
   .video-timer-actions > *,
-  .lesson-nav-actions > * {
+  .lesson-nav-actions > *,
+  .mode-controls > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-grid,
+  .course-preview-cards,
+  .purchased-courses-grid,
+  .courses-grid,
+  .actions-grid,
+  .stats-grid,
+  .parent-grid,
+  .parent-stats,
+  .memory-grid,
+  .quiz-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .word-target-row {
+    flex-direction: column;
+  }
+
+  .word-target-row > * {
     width: 100%;
   }
 }
@@ -139,9 +204,10 @@ canvas {
   .dashboard,
   .pricing-container,
   .lessons-page,
-  .auth-container {
-    padding-left: 10px;
-    padding-right: 10px;
+  .auth-container,
+  .game-page {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
   }
 
   .hero-panel,
@@ -170,9 +236,10 @@ canvas {
   .dashboard,
   .pricing-container,
   .lessons-page,
-  .auth-container {
-    padding-left: 8px;
-    padding-right: 8px;
+  .auth-container,
+  .game-page {
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
   }
 
   .hero-panel,
@@ -214,9 +281,10 @@ canvas {
   .dashboard,
   .pricing-container,
   .lessons-page,
-  .auth-container {
-    padding-left: 6px;
-    padding-right: 6px;
+  .auth-container,
+  .game-page {
+    padding-left: max(6px, env(safe-area-inset-left));
+    padding-right: max(6px, env(safe-area-inset-right));
   }
 
   .hero-panel,

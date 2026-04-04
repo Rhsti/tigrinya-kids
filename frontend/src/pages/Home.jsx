@@ -69,7 +69,21 @@ export default function Home() {
     window.location.href = "/login";
   };
 
-  const canPlayGame = purchasedCourses.some((courseId) => courseId !== "basic");
+  const canPlayGame = purchasedCourses.some((courseId) => ["intermediate", "advanced"].includes(courseId));
+
+  const renderLetterPracticeSection = () => (
+    <div className="learning-section section-card">
+      <div className="section-heading">
+        <div>
+          <span className="section-kicker">Lesson Progress</span>
+          <h2>Tigrinya Letter Practice</h2>
+        </div>
+        <p>Track what has been learned and keep daily practice focused.</p>
+      </div>
+      <ProgressBar current={learned.size} total={letters.length} />
+      <LetterCard letters={letters} onLearn={handleLearn} />
+    </div>
+  );
 
   if (loading) {
     return (
@@ -220,17 +234,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="learning-section section-card">
-        <div className="section-heading">
-          <div>
-            <span className="section-kicker">Lesson Progress</span>
-            <h2>Letter practice</h2>
-          </div>
-          <p>Track what has been learned and keep daily practice focused.</p>
-        </div>
-        <ProgressBar current={learned.size} total={letters.length} />
-        <LetterCard letters={letters} onLearn={handleLearn} />
-      </div>
+      {renderLetterPracticeSection()}
 
       {canPlayGame ? (
         <div className="game-section section-card">
@@ -245,7 +249,7 @@ export default function Home() {
         </div>
       ) : (
         <div className="upgrade-prompt section-card">
-          <p>Upgrade to Standard, Premium, Family, or Mastery to unlock games!</p>
+          <p>Upgrade to Intermediate or Advanced to unlock games!</p>
           <Button onClick={handleBuyCourse}>Upgrade Now</Button>
         </div>
       )}

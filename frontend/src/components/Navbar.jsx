@@ -36,19 +36,15 @@ function Navbar({ theme, onThemeChange }) {
       };
     }
 
-    const loadAdminStatus = async () => {
-      try {
-        const result = await checkAdminAccess();
-        if (!cancelled) {
-          setIsAdmin(Boolean(result?.isAdmin));
-        }
-      } catch {
-        if (!cancelled) {
-          setIsAdmin(false);
-        }
-      }
-    };
-
+   const loadAdminStatus = async () => {
+  try {
+    const data = await checkAdminAccess();
+    setIsAdmin(data?.admin || false);
+  } catch (err) {
+    console.log("Not admin or not logged in");
+    setIsAdmin(false); // ✅ IMPORTANT
+  }
+};
     loadAdminStatus();
 
     return () => {

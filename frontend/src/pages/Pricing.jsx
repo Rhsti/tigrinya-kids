@@ -11,7 +11,7 @@ export default function Pricing() {
   const [error, setError] = useState("");
   const [buyingCourse, setBuyingCourse] = useState("");
   const [paymentConfig, setPaymentConfig] = useState({ paymentsEnabled: false, stripeMode: "unconfigured", checkoutMode: "offline" });
-  const [paymentStatusMessage, setPaymentStatusMessage] = useState("Online checkout is temporarily unavailable.");
+  const [, setPaymentStatusMessage] = useState("Online checkout is temporarily unavailable.");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -253,7 +253,10 @@ export default function Pricing() {
                   <img src={courseInfo.image} alt={`${courseInfo.title} artwork`} className="my-course-image" loading="lazy" />
                   <h3>{courseInfo.title}</h3>
                   <p>{courseInfo.description}</p>
-                  <button className="start-learning-btn" onClick={() => navigate("/")}>
+                  <button
+                    className="start-learning-btn"
+                    onClick={() => navigate(courseId === "basic" ? "/alphabet-tigrinya" : `/lessons/${courseId}`)}
+                  >
                     Start Learning →
                   </button>
                 </div>

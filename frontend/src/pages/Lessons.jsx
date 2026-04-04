@@ -1166,8 +1166,16 @@ export default function Lessons() {
   const [lessonSteps, setLessonSteps] = useState({});
   const [loading, setLoading] = useState(true);
   const [accessDeniedMessage, setAccessDeniedMessage] = useState("");
+  const [welcomeNotice, setWelcomeNotice] = useState("");
 
   const storageKey = `lesson_progress_${courseId}`;
+
+  useEffect(() => {
+    const notice = localStorage.getItem("tgk_welcome_notice");
+    if (!notice) return;
+    setWelcomeNotice(notice);
+    localStorage.removeItem("tgk_welcome_notice");
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -1363,6 +1371,12 @@ export default function Lessons() {
 
   return (
     <div className="lessons-page">
+      {welcomeNotice && (
+        <div style={{ marginBottom: "12px", padding: "12px", borderRadius: "10px", background: "#e8fff3", color: "#0f5132", border: "1px solid #b7ebc8", fontWeight: 700 }}>
+          {welcomeNotice}
+        </div>
+      )}
+
       {currentLesson ? (
         <LessonContent 
           key={currentLesson.id}

@@ -11,7 +11,15 @@ export default function AlphabetTigrinya() {
   const [learned, setLearned] = useState(new Set());
   const [hasCourses, setHasCourses] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [welcomeNotice, setWelcomeNotice] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const notice = localStorage.getItem("tgk_welcome_notice");
+    if (!notice) return;
+    setWelcomeNotice(notice);
+    localStorage.removeItem("tgk_welcome_notice");
+  }, []);
 
   useEffect(() => {
     const loadData = async () => {
@@ -74,6 +82,12 @@ export default function AlphabetTigrinya() {
   return (
     <div className="alphabet-page">
       <div className="alphabet-shell">
+        {welcomeNotice && (
+          <div style={{ padding: "12px", borderRadius: "10px", background: "#e8fff3", color: "#0f5132", border: "1px solid #b7ebc8", fontWeight: 700 }}>
+            {welcomeNotice}
+          </div>
+        )}
+
         <div className="alphabet-header">
           <span className="alphabet-badge">Course</span>
           <h1>Alphabet Tigrinya</h1>

@@ -225,7 +225,10 @@ export default function Home() {
                     <li key={index}>✓ {lesson}</li>
                   ))}
                 </ul>
-                <Button className="course-card-button" onClick={() => navigate(`/lessons/${courseId}`)}>
+                <Button
+                  className="course-card-button"
+                  onClick={() => navigate(courseId === "basic" ? "/alphabet-tigrinya" : `/lessons/${courseId}`)}
+                >
                   Continue Course
                 </Button>
               </div>

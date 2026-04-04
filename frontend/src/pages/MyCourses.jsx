@@ -9,6 +9,14 @@ export default function MyCourses() {
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [welcomeNotice, setWelcomeNotice] = useState("");
+
+  useEffect(() => {
+    const notice = localStorage.getItem("tgk_welcome_notice");
+    if (!notice) return;
+    setWelcomeNotice(notice);
+    localStorage.removeItem("tgk_welcome_notice");
+  }, []);
 
   useEffect(() => {
     const load = async () => {
@@ -49,6 +57,12 @@ export default function MyCourses() {
         </div>
       )}
 
+      {welcomeNotice && (
+        <div style={{ padding: "12px", marginBottom: "20px", borderRadius: "8px", background: "#e8fff3", color: "#0f5132", border: "1px solid #b7ebc8", fontWeight: 700 }}>
+          {welcomeNotice}
+        </div>
+      )}
+
       {courses.length === 0 ? (
         <div className="no-courses">
           <h3>No purchased courses yet</h3>
@@ -69,7 +83,10 @@ export default function MyCourses() {
               )}
               <h3>{COURSE_MAP[courseId]?.title || courseId}</h3>
               <p>{COURSE_MAP[courseId]?.description || "Course purchased"}</p>
-              <button className="start-learning-btn" onClick={() => navigate(`/lessons/${courseId}`)}>
+              <button
+                className="start-learning-btn"
+                onClick={() => navigate(courseId === "basic" ? "/alphabet-tigrinya" : `/lessons/${courseId}`)}
+              >
                 Start Course
               </button>
             </div>

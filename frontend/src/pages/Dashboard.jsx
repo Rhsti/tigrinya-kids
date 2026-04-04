@@ -136,6 +136,21 @@ export default function Dashboard() {
         </button>
       </div>
 
+      {/* Recommended Next Steps */}
+      {purchasedCourses.length > 0 && (
+        <div className="next-steps">
+          <h2>Continue Learning</h2>
+          <div className="next-lesson-card">
+            <div className="lesson-icon">📝</div>
+            <div className="lesson-info">
+              <h3>Alphabet Tigrinya</h3>
+              <p>Open your dedicated alphabet course page</p>
+            </div>
+            <button onClick={() => navigate("/alphabet-tigrinya")}>Continue</button>
+          </div>
+        </div>
+      )}
+
       {/* Quick Stats */}
       <div className="stats-grid">
         <div className="stat-card">
@@ -310,20 +325,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Recommended Next Steps */}
-      {purchasedCourses.length > 0 && (
-        <div className="next-steps">
-          <h2>Continue Learning</h2>
-          <div className="next-lesson-card">
-            <div className="lesson-icon">📝</div>
-            <div className="lesson-info">
-              <h3>Tigrinya Letter Practice</h3>
-              <p>Pick up where you left off</p>
-            </div>
-            <button onClick={() => navigate("/")}>Continue</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

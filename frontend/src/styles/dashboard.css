@@ -43,6 +43,16 @@
     radial-gradient(circle at top right, rgba(243, 197, 107, 0.24), transparent 32%),
     linear-gradient(135deg, #0f3d62, #11496f 45%, #1f7a6c 100%);
   box-shadow: 0 24px 46px rgba(15, 61, 98, 0.24);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 40%);
 }
 
 .welcome-section h1 {
@@ -91,6 +101,12 @@
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(19, 49, 75, 0.08);
   box-shadow: 0 14px 28px rgba(16, 58, 88, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 34px rgba(16, 58, 88, 0.12);
 }
 
 .stat-icon {
@@ -111,7 +127,8 @@
 
 .stat-info p {
   margin: 3px 0 0;
-  color: #5f7184;
+  color: #41576e;
+  font-weight: 600;
 }
 
 .progress-section,
@@ -159,7 +176,7 @@
 
 .streak-copy p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.96);
 }
 
 .streak-action {
@@ -188,6 +205,29 @@
   color: #13314b;
 }
 
+.next-steps {
+  margin-bottom: 28px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(19, 49, 75, 0.08);
+  box-shadow: 0 18px 35px rgba(16, 58, 88, 0.08);
+}
+
+.next-steps h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #123953;
+  background: rgba(26, 95, 122, 0.14);
+  border: 1px solid rgba(26, 95, 122, 0.2);
+  font-weight: 800;
+}
+
 .progress-bar-container {
   height: 18px;
   background: #e6eef8;
@@ -212,7 +252,8 @@
 
 .progress-detail {
   margin: 0;
-  color: #5c7085;
+  color: #3f556b;
+  font-weight: 600;
 }
 
 .courses-section {
@@ -233,6 +274,14 @@
   padding: 10px 14px;
   border-radius: 999px;
   background: rgba(26, 95, 122, 0.1);
+  border: 1px solid rgba(26, 95, 122, 0.16);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.browse-more:hover {
+  transform: translateY(-1px);
+  background: rgba(26, 95, 122, 0.16);
+  box-shadow: 0 12px 24px rgba(16, 58, 88, 0.12);
 }
 
 .courses-grid {
@@ -246,6 +295,12 @@
   border-radius: 20px;
   color: white;
   box-shadow: 0 20px 34px rgba(15, 44, 68, 0.2);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 40px rgba(15, 44, 68, 0.26);
 }
 
 .course-icon {
@@ -350,7 +405,8 @@
 
 .action-card p {
   margin: 0;
-  color: #5e7184;
+  color: #3f566c;
+  font-weight: 600;
   line-height: 1.55;
 }
 
@@ -363,29 +419,56 @@
   color: white;
   background: linear-gradient(135deg, #0f3d62, #1a5f7a);
   box-shadow: 0 20px 38px rgba(15, 61, 98, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.next-lesson-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.14), transparent 45%);
+}
+
+.next-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 42px rgba(15, 61, 98, 0.24);
 }
 
 .lesson-icon {
   font-size: 2.2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .lesson-info {
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .lesson-info h3 {
   margin: 0 0 6px;
+  color: #ffe8a3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .lesson-info p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(244, 250, 255, 0.98);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .next-lesson-card button {
   padding: 12px 18px;
   color: #123953;
   background: #f6d48a;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {
@@ -410,11 +493,16 @@
   }
 
   .dashboard-header,
+  .next-steps,
   .progress-section,
   .no-courses,
   .action-card,
   .next-lesson-card {
     border-radius: 16px;
+  }
+
+  .next-steps {
+    padding: 14px;
   }
 
   .dashboard-header {
@@ -469,6 +557,7 @@
 
   .dashboard-header,
   .streak-panel,
+  .next-steps,
   .progress-section,
   .action-card,
   .next-lesson-card,

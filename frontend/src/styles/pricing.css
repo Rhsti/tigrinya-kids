@@ -76,7 +76,7 @@
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 24px;
   margin-bottom: 50px;
 }
 
@@ -85,7 +85,7 @@
   padding: 22px;
   text-align: center;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
   border-radius: 24px;
   box-shadow: 0 20px 40px rgba(21, 48, 74, 0.1);
   border: 1px solid rgba(19, 49, 75, 0.08);
@@ -104,17 +104,18 @@
 }
 
 .pricing-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 50px rgba(21, 48, 74, 0.16);
+  border-color: rgba(19, 49, 75, 0.14);
 }
 
 .pricing-card.popular {
   border: 2px solid #1f7a6c;
-  transform: scale(1.05);
+  box-shadow: 0 22px 44px rgba(26, 95, 122, 0.18);
 }
 
 .pricing-card.popular:hover {
-  transform: scale(1.05) translateY(-10px);
+  transform: translateY(-8px);
 }
 
 .pricing-card.purchased {
@@ -240,10 +241,11 @@
   font-weight: 800;
   transition: all 0.3s ease;
   box-shadow: 0 14px 28px rgba(26, 95, 122, 0.22);
+  letter-spacing: 0.01em;
 }
 
 .buy-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
   box-shadow: 0 20px 34px rgba(26, 95, 122, 0.28);
 }
 
@@ -371,11 +373,11 @@
   }
   
   .pricing-card.popular {
-    transform: scale(1);
+    transform: none;
   }
   
   .pricing-card.popular:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
   
   .my-courses-grid {
@@ -425,11 +427,11 @@
   }
 
   .pricing-card.popular {
-    transform: scale(1);
+    transform: none;
   }
 
   .pricing-card.popular:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
 
   .amount {

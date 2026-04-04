@@ -14,7 +14,6 @@ import Lessons from "./pages/Lessons";
 import DragGame from "./pages/DragGame";
 import MyCourses from "./pages/MyCourses";
 import AdminPurchases from "./pages/AdminPurchases";
-import AlphabetTigrinya from "./pages/AlphabetTigrinya";
 import "./App.css";
 import { checkAdminAccess } from "./api/auth";
 
@@ -137,13 +136,6 @@ function App() {
           </ProtectedRoute>
         } />
 
-        {/* Alphabet Tigrinya dedicated course page */}
-        <Route path="/alphabet-tigrinya" element={
-          <ProtectedRoute>
-            <AlphabetTigrinya />
-          </ProtectedRoute>
-        } />
-        
         {/* Pricing page - accessible to everyone */}
         <Route path="/pricing" element={<Pricing />} />
         

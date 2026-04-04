@@ -69,7 +69,7 @@ export default function Home() {
     window.location.href = "/login";
   };
 
-  const canPlayGame = purchasedCourses.some((courseId) => courseId !== "basic");
+  const canPlayGame = purchasedCourses.some((courseId) => ["intermediate", "advanced"].includes(courseId));
 
   const renderLetterPracticeSection = () => (
     <div className="learning-section section-card">
@@ -249,7 +249,7 @@ export default function Home() {
         </div>
       ) : (
         <div className="upgrade-prompt section-card">
-          <p>Upgrade to Standard, Premium, Family, or Mastery to unlock games!</p>
+          <p>Upgrade to Intermediate or Advanced to unlock games!</p>
           <Button onClick={handleBuyCourse}>Upgrade Now</Button>
         </div>
       )}

@@ -5,13 +5,8 @@ import Button from "../components/ui/Button";
 
 const courseTitles = {
   basic: "Basic Tigrinya",
-  standard: "Standard Tigrinya",
-  premium: "Premium Tigrinya",
-  family: "Family Conversation Pack",
-  mastery: "Storytelling Mastery",
-  phonics: "Phonics & Sound Lab",
-  reading: "Reading Club",
-  conversation: "Speaking Confidence Bootcamp",
+  intermediate: "Intermediate Tigrinya",
+  advanced: "Advanced Tigrinya",
 };
 
 export default function PaymentSuccess() {

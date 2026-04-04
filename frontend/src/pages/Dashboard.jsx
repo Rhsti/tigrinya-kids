@@ -7,38 +7,24 @@ import "../styles/dashboard.css";
 const courseContent = {
   basic: {
     title: "Basic Tigrinya",
-    description: "Learn the fundamentals of Tigrinya alphabet",
-    lessons: ["Letter Recognition", "Basic Words", "Pronunciation"],
+    description: "Alphabet Tigrinya course",
+    lessons: ["Alphabet Recognition", "Letter Sounds", "Alphabet Practice"],
     color: "linear-gradient(135deg, #6dd5fa, #2980b9)",
     icon: "📖"
   },
-  standard: {
-    title: "Standard Tigrinya",
-    description: "Complete learning with interactive games",
-    lessons: ["Everything in Basic", "Interactive Games", "Writing Practice"],
+  intermediate: {
+    title: "Intermediate Tigrinya",
+    description: "Words Tigrinya course",
+    lessons: ["Core Word Bank", "Everyday Tigrinya Words", "Word Practice"],
     color: "linear-gradient(135deg, #f093fb, #f5576c)",
     icon: "🎮"
   },
-  premium: {
-    title: "Premium Tigrinya",
-    description: "Ultimate learning experience",
-    lessons: ["Everything in Standard", "Video Lessons", "1-on-1 Tutoring"],
+  advanced: {
+    title: "Advanced Tigrinya",
+    description: "English sentence practice",
+    lessons: ["English Sentence Meaning", "Sentence Structure", "Advanced Sentence Practice"],
     color: "linear-gradient(135deg, #4facfe, #00f2fe)",
     icon: "👑"
-  },
-  family: {
-    title: "Family Conversation Pack",
-    description: "Everyday home dialogue and practical speaking prompts",
-    lessons: ["Family greetings", "Home routine expressions", "Role-play practice"],
-    color: "linear-gradient(135deg, #ffb385, #f06b8b)",
-    icon: "👨‍👩‍👧"
-  },
-  mastery: {
-    title: "Storytelling Mastery",
-    description: "Build advanced fluency through story-based speaking",
-    lessons: ["Narrative sentence flow", "Story retelling", "Confidence speaking drills"],
-    color: "linear-gradient(135deg, #7f7fd5, #51a7f9)",
-    icon: "🎤"
   }
 };
 
@@ -50,7 +36,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const canPlayGame = purchasedCourses.some((courseId) => ["standard", "premium", "family", "mastery"].includes(courseId));
+  const canPlayGame = purchasedCourses.some((courseId) => ["intermediate", "advanced"].includes(courseId));
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -146,7 +132,7 @@ export default function Dashboard() {
               <h3>Alphabet Tigrinya</h3>
               <p>Open your dedicated alphabet course page</p>
             </div>
-            <button onClick={() => navigate("/alphabet-tigrinya")}>Continue</button>
+            <button onClick={() => navigate("/lessons/basic")}>Continue</button>
           </div>
         </div>
       )}

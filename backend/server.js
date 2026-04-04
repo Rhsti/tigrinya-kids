@@ -16,16 +16,16 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback){
+  origin: function (origin, callback) {
     // allow requests with no origin like mobile apps or curl
-    if(!origin) return callback(null, true);
+    if (!origin) return callback(null, true);
 
     // allow localhost and any vercel.app domain
-    if(origin.startsWith("https://") && origin.includes(".vercel.app")){
+    if (origin.startsWith("https://") && origin.includes(".vercel.app")) {
       return callback(null, true);
     }
 
-    if(allowedOrigins.indexOf(origin) !== -1){
+    if (allowedOrigins.indexOf(origin) !== -1) {
       return callback(null, true);
     }
 
@@ -56,6 +56,12 @@ async function seedCourses() {
       { upsert: true }
     );
   }
+
+  const activeCourseIds = defaultCourses.map((course) => course.courseId);
+  await Course.updateMany(
+    { courseId: { $nin: activeCourseIds } },
+    { $set: { isActive: false } }
+  );
 }
 
 // Stripe webhook requires raw body, so it must be registered before express.json().

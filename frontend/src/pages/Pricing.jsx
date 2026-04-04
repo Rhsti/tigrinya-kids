@@ -174,9 +174,9 @@ export default function Pricing() {
       <div className="pricing-header">
         <h1>Choose Your Learning Plan</h1>
         <p>Start learning Tigrinya today with our interactive courses</p>
-        <p className={`payment-status ${paymentConfig.paymentsEnabled ? "online" : "offline"}`}>
+        {/* <p className={`payment-status ${paymentConfig.paymentsEnabled ? "online" : "offline"}`}>
           Payment status: {paymentConfig.paymentsEnabled ? paymentStatusMessage : paymentStatusMessage}
-        </p>
+        </p> */}
       </div>
 
       {/* Error Display */}

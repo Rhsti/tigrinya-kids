@@ -132,7 +132,7 @@ export default function Dashboard() {
               <h3>Alphabet Tigrinya</h3>
               <p>Open your dedicated alphabet course page</p>
             </div>
-            <button onClick={() => navigate("/lessons/basic")}>Continue</button>
+            <button onClick={() => navigate("/alphabet-tigrinya")}>Continue</button>
           </div>
         </div>
       )}

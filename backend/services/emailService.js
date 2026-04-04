@@ -91,6 +91,7 @@ async function sendWelcomeEmail({ toEmail, displayName }) {
   const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER;
   const lines = [
     `Welcome to our site, Tigrinya Kids!`,
+    `Welcome new user!`,
     `Hi ${learnerName},`,
     `Your account has been created successfully.`,
     `Start learning here: ${FRONTEND_URL}/dashboard`,
@@ -104,6 +105,7 @@ async function sendWelcomeEmail({ toEmail, displayName }) {
           Welcome to our site, Tigrinya Kids
         </div>
         <div style="padding: 20px; line-height: 1.6;">
+          <p style="margin: 0 0 12px; font-weight: 700; color: #1a5f7a;">Welcome new user!</p>
           <p style="margin: 0 0 12px;">Hi ${learnerName},</p>
           <p style="margin: 0 0 12px;">Your account has been created successfully.</p>
           <p style="margin: 0 0 16px;">Start learning Tigrinya with guided lessons and progress tracking.</p>

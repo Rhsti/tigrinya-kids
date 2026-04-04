@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import "../styles/auth.css";
 
 export default function Register() {
+  const WELCOME_NOTICE_KEY = "tgk_welcome_notice";
+  const WELCOME_NOTICE_TEXT = "Welcome new user! Your account is ready.";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,6 +15,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const pendingCourse = localStorage.getItem("pendingCourse");
+  const getCourseRoute = (courseId) => (courseId === "basic" ? "/alphabet-tigrinya" : `/lessons/${courseId}`);
 
   const redirectToCheckout = (url) => {
     if (!url) return;
@@ -65,10 +68,18 @@ export default function Register() {
         setInfo("Account created. Welcome email could not be sent this time.");
       }
 
-      // 2️⃣ Auto-login
-      const data = await login({ email: normalizedEmail, password });
-      if (data.token) {
-        localStorage.setItem("jwt", data.token);
+      // 2️⃣ Authenticate immediately from register response (no extra login step)
+      let token = registerData?.token;
+
+      // Backward-compatible fallback if register token is missing
+      if (!token) {
+        const loginData = await login({ email: normalizedEmail, password });
+        token = loginData?.token || "";
+      }
+
+      if (token) {
+        localStorage.setItem("jwt", token);
+        localStorage.setItem(WELCOME_NOTICE_KEY, WELCOME_NOTICE_TEXT);
 
         // 3️⃣ Handle pending course purchase
         if (pendingCourse) {
@@ -80,18 +91,25 @@ export default function Register() {
               redirectToCheckout(paymentData.url);
               return; // stop further navigation
             }
+
+            // If checkout URL is not returned, still send user directly to selected course.
+            navigate(getCourseRoute(pendingCourse));
+            return;
           } catch (paymentError) {
             console.error("Payment error:", paymentError);
-            // Continue to home if payment fails
+            // Continue to selected course if payment init fails
+            navigate(getCourseRoute(pendingCourse));
+            return;
           }
         }
 
         // 4️⃣ Clear pending course
         localStorage.removeItem("pendingCourse");
+        localStorage.removeItem("pendingPaymentMethod");
 
-        navigate("/");
+        navigate("/my-courses");
       } else {
-        // Fallback if auto-login fails
+        // Fallback only when auth token could not be obtained
         navigate("/login");
       }
     } catch (err) {

@@ -1,7 +1,17 @@
+:root {
+  --pricing-ink-900: #0f2b45;
+  --pricing-ink-700: #2d4a67;
+  --pricing-ink-500: #53657a;
+  --pricing-surface: rgba(255, 255, 255, 0.9);
+  --pricing-brand-700: #1a5f7a;
+  --pricing-brand-600: #1f7a6c;
+  --pricing-accent: #f3c56b;
+}
+
 .pricing-container {
-  max-width: 1180px;
+  width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 36px 20px 0;
+  padding: clamp(16px, 3vw, 36px) clamp(12px, 2.2vw, 20px) 0;
 }
 
 .pricing-header {
@@ -11,9 +21,9 @@
   border-radius: 28px;
   background:
     radial-gradient(circle at top left, rgba(243, 197, 107, 0.24), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(243, 248, 255, 0.94));
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(243, 248, 255, 0.97));
   border: 1px solid rgba(19, 49, 75, 0.08);
-  box-shadow: 0 28px 60px rgba(21, 48, 74, 0.1);
+  box-shadow: 0 30px 70px rgba(21, 48, 74, 0.12);
   overflow: hidden;
   position: relative;
 }
@@ -32,13 +42,15 @@
 
 .pricing-header h1 {
   font-size: clamp(2.3rem, 4vw, 4rem);
-  color: #13314b;
+  color: var(--pricing-ink-900);
   margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .pricing-header p {
   font-size: 1.2rem;
-  color: #53657a;
+  color: var(--pricing-ink-500);
 }
 
 .payment-status {
@@ -75,22 +87,31 @@
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 360px));
+  gap: clamp(16px, 2vw, 24px);
   margin-bottom: 50px;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .pricing-card {
-  background: rgba(255, 255, 255, 0.88);
-  padding: 22px;
+  background: var(--pricing-surface);
+  padding: 20px 18px 18px;
   text-align: center;
   position: relative;
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 220ms ease, border-color 220ms ease;
   border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(21, 48, 74, 0.1);
+  box-shadow: 0 22px 46px rgba(21, 48, 74, 0.12);
   border: 1px solid rgba(19, 49, 75, 0.08);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 420px;
 }
 
 .pricing-card::before {
@@ -104,18 +125,18 @@
 }
 
 .pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 50px rgba(21, 48, 74, 0.16);
-  border-color: rgba(19, 49, 75, 0.14);
+  transform: none;
+  box-shadow: 0 22px 46px rgba(21, 48, 74, 0.12);
+  border-color: rgba(19, 49, 75, 0.08);
 }
 
 .pricing-card.popular {
-  border: 2px solid #1f7a6c;
-  box-shadow: 0 22px 44px rgba(26, 95, 122, 0.18);
+  border: 2px solid var(--pricing-brand-600);
+  box-shadow: 0 24px 50px rgba(26, 95, 122, 0.22);
 }
 
 .pricing-card.popular:hover {
-  transform: translateY(-8px);
+  transform: none;
 }
 
 .pricing-card.purchased {
@@ -125,43 +146,50 @@
 
 .popular-badge {
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: #1f7a6c;
   color: white;
-  padding: 5px 20px;
-  border-radius: 999px;
+  padding: 6px 20px;
+  border-radius: 0 0 12px 12px;
   font-size: 0.9rem;
   font-weight: 800;
+  z-index: 3;
+  box-shadow: 0 8px 16px rgba(18, 77, 84, 0.28);
 }
 
 .purchased-badge {
   position: absolute;
-  top: -15px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: #1f7a6c;
   color: white;
-  padding: 5px 20px;
-  border-radius: 999px;
+  padding: 6px 20px;
+  border-radius: 0 0 12px 12px;
   font-size: 0.9rem;
   font-weight: 800;
+  z-index: 3;
+  box-shadow: 0 8px 16px rgba(18, 77, 84, 0.28);
 }
 
 .pricing-card h2 {
-  font-size: 1.8rem;
-  color: #13314b;
-  margin: 12px 0 10px;
+  font-size: 1.55rem;
+  color: var(--pricing-ink-900);
+  margin: 10px 0 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .pricing-card-image {
-  width: calc(100% + 44px);
-  margin: -22px -22px 14px;
-  height: 170px;
+  width: calc(100% + 36px);
+  margin: -18px -18px 12px;
+  height: clamp(120px, 16vw, 148px);
   object-fit: cover;
   display: block;
   border-bottom: 1px solid rgba(19, 49, 75, 0.08);
+  transition: none;
 }
 
 .pricing-meta-row {
@@ -180,12 +208,12 @@
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(19, 49, 75, 0.08);
-  color: #16324d;
+  background: rgba(19, 49, 75, 0.07);
+  color: var(--pricing-ink-700);
 }
 
 .price {
-  margin: 20px 0;
+  margin: 12px 0;
 }
 
 .currency {
@@ -194,9 +222,10 @@
 }
 
 .amount {
-  font-size: 3.5rem;
+  font-size: 2.6rem;
   font-weight: bold;
-  color: #1f7a6c;
+  color: var(--pricing-brand-600);
+  letter-spacing: -0.02em;
 }
 
 .period {
@@ -205,24 +234,29 @@
 }
 
 .course-description {
-  color: #53657a;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: var(--pricing-ink-500);
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .features {
   list-style: none;
   padding: 0;
-  margin: 30px 0;
+  margin: 16px 0 8px;
   text-align: left;
+  flex: 1;
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+  transition: none;
 }
 
 .features li {
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(19, 49, 75, 0.08);
-  color: #415367;
-  font-size: 0.95rem;
+  color: #3f5266;
+  font-size: 0.9rem;
 }
 
 .features li:last-child {
@@ -233,20 +267,27 @@
   width: 100%;
   padding: 15px;
   font-size: 1.1rem;
-  background: linear-gradient(135deg, #1f7a6c 0%, #1a5f7a 100%);
+  background: linear-gradient(135deg, var(--pricing-brand-600) 0%, var(--pricing-brand-700) 100%);
   color: white;
   border: none;
   border-radius: 14px;
   cursor: pointer;
   font-weight: 800;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 14px 28px rgba(26, 95, 122, 0.22);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.015em;
+  min-height: 46px;
 }
 
 .buy-btn:hover {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-2px);
   box-shadow: 0 20px 34px rgba(26, 95, 122, 0.28);
+}
+
+.buy-btn:focus-visible,
+.start-learning-btn:focus-visible {
+  outline: 3px solid rgba(26, 95, 122, 0.28);
+  outline-offset: 2px;
 }
 
 .buy-btn:disabled {
@@ -260,6 +301,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 8px;
 }
 
 .paypal-btn {
@@ -283,8 +325,9 @@
 
 .my-courses-section h2 {
   text-align: center;
-  color: #333;
+  color: var(--pricing-ink-900);
   margin-bottom: 30px;
+  letter-spacing: -0.01em;
 }
 
 .my-courses-grid {
@@ -301,6 +344,8 @@
   text-align: center;
   box-shadow: 0 20px 40px rgba(21, 48, 74, 0.18);
   transition: transform 220ms ease, box-shadow 220ms ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 340px;
 }
 
 .my-course-card:hover {
@@ -359,17 +404,18 @@
   }
   
   .pricing-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 360px));
     gap: 25px;
+    justify-content: center;
   }
   
   .pricing-card {
-    padding: 35px 25px;
+    padding: 28px 22px;
   }
 
   .pricing-card-image {
-    width: calc(100% + 50px);
-    margin: -35px -25px 14px;
+    width: calc(100% + 44px);
+    margin: -28px -22px 14px;
   }
   
   .pricing-card.popular {
@@ -377,7 +423,7 @@
   }
   
   .pricing-card.popular:hover {
-    transform: translateY(-6px);
+    transform: none;
   }
   
   .my-courses-grid {
@@ -412,18 +458,19 @@
   }
 
   .pricing-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
 
   .pricing-card {
-    padding: 30px 20px;
+    padding: 20px 16px;
+    max-width: 100%;
   }
 
   .pricing-card-image {
-    width: calc(100% + 40px);
-    margin: -30px -20px 12px;
-    height: 150px;
+    width: calc(100% + 32px);
+    margin: -20px -16px 12px;
+    height: 138px;
   }
 
   .pricing-card.popular {
@@ -435,7 +482,7 @@
   }
 
   .amount {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .features li {
@@ -447,6 +494,14 @@
     padding: 12px;
     font-size: 1rem;
     min-height: 44px;
+  }
+
+  .features {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    margin: 16px 0 8px;
+    transition: none;
   }
 
   .my-courses-grid {
@@ -484,7 +539,7 @@
   }
 
   .pricing-card {
-    padding: 22px 16px;
+    padding: 18px 14px;
     border-radius: 16px;
   }
 
@@ -500,6 +555,11 @@
   .purchased-badge {
     font-size: 0.8rem;
     padding: 4px 15px;
+    top: 0;
+    max-width: calc(100% - 20px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 
@@ -560,6 +620,34 @@
   .buy-btn,
   .start-learning-btn {
     font-size: 0.92rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .pricing-card:hover,
+  .pricing-card.popular:hover,
+  .buy-btn:hover,
+  .my-course-card:hover,
+  .start-learning-btn:hover {
+    transform: none;
+  }
+
+  .features {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    margin: 16px 0 8px;
+    transition: none;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card,
+  .buy-btn,
+  .my-course-card,
+  .start-learning-btn {
+    transition: none;
   }
 }
 

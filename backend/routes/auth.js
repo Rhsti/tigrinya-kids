@@ -345,10 +345,13 @@ router.get('/me', async (req, res) => {
     const { user } = result;
     res.json({
       email: user.email,
+      name: user.name || '',
+      avatarData: user.avatarData || '',
       learnedLetters: user.learnedLetters || [],
       purchasedCourses: user.purchasedCourses || [],
       subscriptionActive: user.subscriptionActive || false,
       purchaseDate: user.purchaseDate,
+      createdAt: user.createdAt || null,
       source: result.source
     });
   } catch (err) {
@@ -425,6 +428,93 @@ router.post('/course-progress/:courseId', async (req, res) => {
   } catch (err) {
     console.error('Auth save course progress failed:', err.message);
     return res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// PUT /auth/profile - Update name and/or password
+router.put('/profile', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ message: 'No token provided' });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default-secret-key');
+    const result = await getUser({ _id: decoded.id });
+    if (!result) return res.status(404).json({ message: 'User not found' });
+
+    const { name, currentPassword, newPassword } = req.body || {};
+    const user = result.user;
+
+    // Validate name length
+    if (name !== undefined) {
+      const trimmed = String(name).trim();
+      if (trimmed.length > 60) return res.status(400).json({ message: 'Name is too long' });
+      user.name = trimmed;
+    }
+
+    // Handle password change
+    if (newPassword !== undefined) {
+      if (!currentPassword) return res.status(400).json({ message: 'Current password is required to set a new password' });
+      if (String(newPassword).length < 6) return res.status(400).json({ message: 'New password must be at least 6 characters' });
+
+      const valid = await bcrypt.compare(String(currentPassword), user.password);
+      if (!valid) return res.status(400).json({ message: 'Current password is incorrect' });
+
+      user.password = await bcrypt.hash(String(newPassword), 10);
+    }
+
+    if (result.source === 'mongodb') {
+      const User = require('../models/User');
+      await User.findByIdAndUpdate(user._id, { name: user.name, password: user.password });
+    } else {
+      users.set(user._id, user);
+    }
+
+    res.json({ message: 'Profile updated', name: user.name || '' });
+  } catch (err) {
+    console.error('Auth update profile failed:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// POST /auth/avatar - Upload profile photo (base64 data URI)
+router.post('/avatar', async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ message: 'No token provided' });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default-secret-key');
+    const result = await getUser({ _id: decoded.id });
+    if (!result) return res.status(404).json({ message: 'User not found' });
+
+    const { avatarData } = req.body || {};
+    if (!avatarData || typeof avatarData !== 'string') {
+      return res.status(400).json({ message: 'No image data provided' });
+    }
+
+    // Validate it's a base64 data URI (jpeg or png only)
+    if (!/^data:image\/(jpeg|png|webp);base64,/.test(avatarData)) {
+      return res.status(400).json({ message: 'Invalid image format. Use JPEG, PNG, or WebP.' });
+    }
+
+    // Rough size guard: base64 of a 200x200 JPEG should be well under 100KB
+    if (avatarData.length > 200 * 1024) {
+      return res.status(400).json({ message: 'Image too large. Please use a smaller photo.' });
+    }
+
+    const user = result.user;
+    user.avatarData = avatarData;
+
+    if (result.source === 'mongodb') {
+      const User = require('../models/User');
+      await User.findByIdAndUpdate(user._id, { avatarData: user.avatarData });
+    } else {
+      users.set(user._id, user);
+    }
+
+    res.json({ message: 'Avatar updated', avatarData: user.avatarData });
+  } catch (err) {
+    console.error('Auth avatar upload failed:', err.message);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

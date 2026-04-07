@@ -11,7 +11,7 @@ export default function Home() {
   const [letters, setLetters] = useState([]);
   const [learned, setLearned] = useState(new Set());
   const [purchasedCourses, setPurchasedCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isSyncingCourses, setIsSyncingCourses] = useState(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
@@ -23,9 +23,10 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       if (!token) {
-        setLoading(false);
         return;
       }
+
+      setIsSyncingCourses(true);
 
       try {
         const coursesData = await getMyCourses();
@@ -35,7 +36,6 @@ export default function Home() {
         setPurchasedCourses(purchased);
 
         if (!purchased.length) {
-          setLoading(false);
           return;
         }
 
@@ -44,7 +44,7 @@ export default function Home() {
       } catch (err) {
         console.error("Failed to load data:", err);
       } finally {
-        setLoading(false);
+        setIsSyncingCourses(false);
       }
     };
 
@@ -84,16 +84,6 @@ export default function Home() {
       <LetterCard letters={letters} onLearn={handleLearn} />
     </div>
   );
-
-  if (loading) {
-    return (
-      <div className="home home-shell">
-        <div className="loading-container">
-          <p>Loading your courses...</p>
-        </div>
-      </div>
-    );
-  }
 
   if (!token) {
     return (
@@ -139,15 +129,26 @@ export default function Home() {
         </section>
 
         <div className="no-courses-message panel-surface">
-            <h2>Get Started</h2>
-            <p>You don't have any courses yet. Purchase a course to start learning!</p>
+            <h2>{isSyncingCourses ? "Syncing Courses" : "Get Started"}</h2>
+            <p>
+              {isSyncingCourses
+                ? "Checking your enrolled courses..."
+                : "You don't have any courses yet. Purchase a course to start learning!"}
+            </p>
             
             <div className="available-courses-preview">
               <h3>Available Courses:</h3>
               <div className="course-preview-cards">
-                {COURSE_CATALOG.map((course) => (
+                {COURSE_CATALOG.map((course, index) => (
                   <div key={course.id} className="course-preview-card" style={{ background: course.color }}>
-                    <img src={course.image} alt={`${course.title} visual`} className="course-preview-image" loading="lazy" />
+                    <img
+                      src={course.image}
+                      alt={`${course.title} visual`}
+                      className="course-preview-image"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
+                    />
                     <div className="course-preview-content">
                       <p className="course-preview-level">{course.level}</p>
                       <h4>{course.title}</h4>
@@ -213,7 +214,13 @@ export default function Home() {
                 className="purchased-course-card"
                 style={{ background: content.color }}
               >
-                <img src={content.image} alt={`${content.title} visual`} className="purchased-course-image" loading="lazy" />
+                <img
+                  src={content.image}
+                  alt={`${content.title} visual`}
+                  className="purchased-course-image"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="course-chip-row">
                   <span className="course-chip">{content.level}</span>
                   <span className="course-chip">{content.duration}</span>

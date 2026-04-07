@@ -117,6 +117,20 @@ router.post('/', async (req, res) => {
                             paymentMethod: 'card',
                             receiptUrl: purchase.receiptUrl,
                             checkoutSessionId: session.id,
+                            purchase: {
+                                purchaseId: purchase._id,
+                                email: purchase.email,
+                                courseId: purchase.courseId,
+                                courseTitle: course.title,
+                                provider: purchase.provider,
+                                amount: purchase.amount,
+                                currency: purchase.currency,
+                                status: purchase.status,
+                                checkoutSessionId: purchase.checkoutSessionId,
+                                paymentIntentId: purchase.paymentIntentId,
+                                receiptUrl: purchase.receiptUrl,
+                                createdAt: purchase.createdAt,
+                            },
                         });
                     } catch (queueErr) {
                         console.error('Webhook email queue failed:', queueErr.message);

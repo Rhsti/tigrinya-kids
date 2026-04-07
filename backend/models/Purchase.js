@@ -7,7 +7,19 @@ const PurchaseSchema = new mongoose.Schema(
     courseId: {
       type: String,
       required: true,
-      enum: ['basic', 'standard', 'premium', 'family', 'mastery', 'phonics', 'reading', 'conversation'],
+      enum: [
+        'basic',
+        'intermediate',
+        'advanced',
+        // Legacy IDs kept for backward compatibility with older purchase rows.
+        'standard',
+        'premium',
+        'family',
+        'mastery',
+        'phonics',
+        'reading',
+        'conversation',
+      ],
       index: true,
     },
     paymentId: { type: String, index: true },

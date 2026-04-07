@@ -77,41 +77,37 @@ export default function Register() {
         token = loginData?.token || "";
       }
 
-      if (token) {
-        localStorage.setItem("jwt", token);
-        localStorage.setItem(WELCOME_NOTICE_KEY, WELCOME_NOTICE_TEXT);
+      if (!token) {
+        throw new Error("Account created but sign-in token was not returned. Please login once.");
+      }
 
-        // 3️⃣ Handle pending course purchase
-        if (pendingCourse) {
-          try {
-            const pendingMethod = localStorage.getItem("pendingPaymentMethod") || "card";
-            const paymentData = await createStripeSession(pendingCourse, pendingMethod);
-            if (paymentData.url) {
-              localStorage.setItem("pendingSessionId", paymentData.sessionId);
-              redirectToCheckout(paymentData.url);
-              return; // stop further navigation
-            }
+      localStorage.setItem("jwt", token);
+      localStorage.setItem(WELCOME_NOTICE_KEY, WELCOME_NOTICE_TEXT);
 
-            // If checkout URL is not returned, still send user directly to selected course.
-            navigate(getCourseRoute(pendingCourse));
-            return;
-          } catch (paymentError) {
-            console.error("Payment error:", paymentError);
-            // Continue to selected course if payment init fails
-            navigate(getCourseRoute(pendingCourse));
-            return;
+      // 3️⃣ Handle pending course purchase
+      if (pendingCourse) {
+        try {
+          const pendingMethod = localStorage.getItem("pendingPaymentMethod") || "card";
+          const paymentData = await createStripeSession(pendingCourse, pendingMethod);
+          if (paymentData.url) {
+            localStorage.setItem("pendingSessionId", paymentData.sessionId);
+            redirectToCheckout(paymentData.url);
+            return; // stop further navigation
           }
+        } catch (paymentError) {
+          console.error("Payment error:", paymentError);
         }
 
-        // 4️⃣ Clear pending course
-        localStorage.removeItem("pendingCourse");
-        localStorage.removeItem("pendingPaymentMethod");
-
-        navigate("/my-courses");
-      } else {
-        // Fallback only when auth token could not be obtained
-        navigate("/login");
+        // If checkout does not start, still send user directly to selected course.
+        navigate(getCourseRoute(pendingCourse), { replace: true });
+        return;
       }
+
+      // 4️⃣ Clear pending course and send user directly into their learning area
+      localStorage.removeItem("pendingCourse");
+      localStorage.removeItem("pendingPaymentMethod");
+
+      navigate("/my-courses", { replace: true });
     } catch (err) {
       setError(err.message || "Registration failed. Please try again.");
     } finally {

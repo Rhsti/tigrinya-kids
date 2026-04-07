@@ -520,12 +520,39 @@ router.post('/create-stripe-session', authenticateToken, async (req, res) => {
       };
 
       await persistUserPurchase(user, req.userSource, courseId);
-      await savePurchaseRecord({
+      const storedPurchase = await savePurchaseRecord({
         user,
         course,
         checkoutSession: demoSession,
         provider: 'demo',
       });
+
+      try {
+        const purchaseForEmail = storedPurchase?.toObject ? storedPurchase.toObject() : storedPurchase;
+        await enqueuePurchaseEmail({
+          toEmail: user.email,
+          course,
+          paymentMethod: 'card',
+          receiptUrl: null,
+          checkoutSessionId: demoSession.id,
+          purchase: {
+            purchaseId: purchaseForEmail?._id,
+            email: purchaseForEmail?.email || user.email,
+            courseId: purchaseForEmail?.courseId || course.id,
+            courseTitle: course.title,
+            provider: purchaseForEmail?.provider || 'demo',
+            amount: purchaseForEmail?.amount ?? course.price,
+            currency: purchaseForEmail?.currency || course.currency || 'usd',
+            status: purchaseForEmail?.status || 'paid',
+            checkoutSessionId: purchaseForEmail?.checkoutSessionId || demoSession.id,
+            paymentIntentId: purchaseForEmail?.paymentIntentId || String(demoSession.payment_intent || ''),
+            receiptUrl: purchaseForEmail?.receiptUrl || null,
+            createdAt: purchaseForEmail?.createdAt || new Date().toISOString(),
+          },
+        });
+      } catch (emailErr) {
+        console.error('Demo purchase email failed:', emailErr.message);
+      }
 
       return res.json({
         sessionId: demoSessionId,
@@ -663,6 +690,7 @@ router.get('/verify/:courseId', authenticateToken, async (req, res) => {
     }
 
     let purchaseRecord = await Purchase.findOne({ checkoutSessionId: String(sessionId) }).lean();
+    let createdPurchaseInRequest = false;
 
     if (!purchaseRecord) {
       if (stripeStatus.webhookConfigured) {
@@ -681,6 +709,7 @@ router.get('/verify/:courseId', authenticateToken, async (req, res) => {
         provider: 'stripe',
       });
       purchaseRecord = storedPurchase?.toObject ? storedPurchase.toObject() : storedPurchase;
+      createdPurchaseInRequest = true;
     }
 
     if (String(purchaseRecord.userId) !== String(user._id) || String(purchaseRecord.courseId) !== String(courseId)) {
@@ -690,6 +719,34 @@ router.get('/verify/:courseId', authenticateToken, async (req, res) => {
     const freshUser = req.userSource === 'mongodb'
       ? await User.findById(user._id).lean()
       : req.user;
+
+    if (createdPurchaseInRequest) {
+      try {
+        await enqueuePurchaseEmail({
+          toEmail: purchaseRecord?.email || user.email,
+          course,
+          paymentMethod: 'card',
+          receiptUrl: purchaseRecord?.receiptUrl || null,
+          checkoutSessionId: session.id,
+          purchase: {
+            purchaseId: purchaseRecord?._id,
+            email: purchaseRecord?.email || user.email,
+            courseId: purchaseRecord?.courseId || course.id,
+            courseTitle: course.title,
+            provider: purchaseRecord?.provider || 'stripe',
+            amount: purchaseRecord?.amount ?? course.price,
+            currency: purchaseRecord?.currency || course.currency || 'usd',
+            status: purchaseRecord?.status || 'paid',
+            checkoutSessionId: purchaseRecord?.checkoutSessionId || session.id,
+            paymentIntentId: purchaseRecord?.paymentIntentId || String(session.payment_intent || ''),
+            receiptUrl: purchaseRecord?.receiptUrl || null,
+            createdAt: purchaseRecord?.createdAt || new Date().toISOString(),
+          },
+        });
+      } catch (emailErr) {
+        console.error('Purchase email queue failed:', emailErr.message);
+      }
+    }
 
     res.json({
       success: true,

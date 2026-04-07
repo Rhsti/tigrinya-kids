@@ -33,7 +33,7 @@ export default function Dashboard() {
   const [progress, setProgress] = useState({});
   const [gameStats, setGameStats] = useState({ streak: 0, points: 0, lastPlayed: "" });
   const [topScore, setTopScore] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isSyncingDashboard, setIsSyncingDashboard] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const canPlayGame = purchasedCourses.some((courseId) => ["intermediate", "advanced"].includes(courseId));
@@ -46,6 +46,8 @@ export default function Dashboard() {
     }
 
     const loadData = async () => {
+      setIsSyncingDashboard(true);
+
       try {
         // Get user info from token
         const tokenParts = JSON.parse(atob(token.split('.')[1]));
@@ -63,12 +65,11 @@ export default function Dashboard() {
           setTopScore(null);
         }
 
-        const coursesData = await getMyCourses();
-        const purchased = coursesData.purchasedCourses || [];
+        const [coursesData, lettersData] = await Promise.all([getMyCourses(), fetchLetters()]);
+        const purchased = (coursesData.purchasedCourses || []).filter((id) => !!courseContent[id]);
         setPurchasedCourses(purchased);
 
         // Load letters for progress tracking
-        const lettersData = await fetchLetters();
         if (lettersData && lettersData.learned) {
           setProgress({
             lettersLearned: lettersData.learned.length,
@@ -79,7 +80,7 @@ export default function Dashboard() {
       } catch (err) {
         console.error("Failed to load dashboard:", err);
       } finally {
-        setLoading(false);
+        setIsSyncingDashboard(false);
       }
     };
 
@@ -98,17 +99,6 @@ export default function Dashboard() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="dashboard">
-        <div className="loading-container">
-          <div className="loader"></div>
-          <p>Loading your dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="dashboard">
       {/* Welcome Header */}
@@ -125,7 +115,7 @@ export default function Dashboard() {
       {/* Recommended Next Steps */}
       {purchasedCourses.length > 0 && (
         <div className="next-steps">
-          <h2>Continue Learning</h2>
+          <h2>Tigrinya Alphabet Learn</h2>
           <div className="next-lesson-card">
             <div className="lesson-icon">📝</div>
             <div className="lesson-info">
@@ -216,6 +206,10 @@ export default function Dashboard() {
           <Link to="/pricing" className="browse-more">Browse More</Link>
         </div>
 
+        {isSyncingDashboard && (
+          <p className="progress-detail">Syncing your dashboard...</p>
+        )}
+
         {purchasedCourses.length > 0 ? (
           <div className="courses-grid">
             {purchasedCourses.map(courseId => {
@@ -243,6 +237,12 @@ export default function Dashboard() {
                 </div>
               ) : null;
             })}
+          </div>
+        ) : isSyncingDashboard ? (
+          <div className="no-courses">
+            <div className="no-courses-icon">⏳</div>
+            <h3>Syncing courses...</h3>
+            <p>Checking your account and loading your learning data.</p>
           </div>
         ) : (
           <div className="no-courses">

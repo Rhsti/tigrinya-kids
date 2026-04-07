@@ -110,6 +110,7 @@ function Navbar({ theme, onThemeChange }) {
           <>
             <NavLink to="/my-courses" className={({ isActive }) => isActive ? "active-link" : ""} onClick={() => setIsMenuOpen(false)}>My Courses</NavLink>
             <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active-link" : ""} onClick={() => setIsMenuOpen(false)}>Dashboard</NavLink>
+            <NavLink to="/profile" className={({ isActive }) => isActive ? "active-link" : ""} onClick={() => setIsMenuOpen(false)}>Profile</NavLink>
             {isAdmin ? (
               <NavLink to="/admin/purchases" className={({ isActive }) => isActive ? "active-link" : ""} onClick={() => setIsMenuOpen(false)}>Admin</NavLink>
             ) : null}

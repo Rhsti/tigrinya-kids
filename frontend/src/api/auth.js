@@ -277,3 +277,26 @@ export function saveCourseProgress(courseId, progress) {
     body: JSON.stringify(progress),
   });
 }
+
+// ----------------------
+// Profile
+// ----------------------
+export function getProfile() {
+  return apiFetch("/auth/me");
+}
+
+export function updateProfile(data) {
+  return apiFetch("/auth/profile", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
+
+export function uploadAvatar(avatarData) {
+  return apiFetch("/auth/avatar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ avatarData }),
+  });
+}

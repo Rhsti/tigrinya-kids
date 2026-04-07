@@ -50,7 +50,7 @@ const buildTransporter = () => {
   });
 };
 
-async function sendPurchaseConfirmationEmail({ toEmail, course, paymentMethod = 'card', receiptUrl }) {
+async function sendPurchaseConfirmationEmail({ toEmail, course, paymentMethod = 'card', receiptUrl, purchase = null }) {
   const transporter = buildTransporter();
   if (!transporter || !toEmail || !course) {
     return false;
@@ -71,11 +71,44 @@ async function sendPurchaseConfirmationEmail({ toEmail, course, paymentMethod = 
     lines.push(`Stripe receipt: ${receiptUrl}`);
   }
 
+  let attachments;
+  if (purchase) {
+    const header = ['purchaseId', 'email', 'courseId', 'courseTitle', 'provider', 'amount', 'currency', 'status', 'checkoutSessionId', 'paymentIntentId', 'receiptUrl', 'createdAt'];
+    const escape = (value) => {
+      const text = value == null ? '' : String(value);
+      if (/[",\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
+      return text;
+    };
+
+    const row = [
+      purchase.purchaseId || purchase._id || '',
+      purchase.email || toEmail,
+      purchase.courseId || course.id || '',
+      purchase.courseTitle || course.title || '',
+      purchase.provider || 'stripe',
+      purchase.amount != null ? Number(purchase.amount).toFixed(2) : Number(course.price).toFixed(2),
+      purchase.currency || 'usd',
+      purchase.status || 'paid',
+      purchase.checkoutSessionId || '',
+      purchase.paymentIntentId || '',
+      purchase.receiptUrl || receiptUrl || '',
+      purchase.createdAt || new Date().toISOString(),
+    ].map(escape).join(',');
+
+    const csvText = `${header.join(',')}\n${row}`;
+    attachments = [{
+      filename: 'receipt.csv',
+      content: csvText,
+      contentType: 'text/csv',
+    }];
+  }
+
   await transporter.sendMail({
     from: fromAddress,
     to: toEmail,
     subject: `Payment confirmed: ${course.title}`,
     text: lines.join('\n'),
+    attachments,
   });
 
   return true;

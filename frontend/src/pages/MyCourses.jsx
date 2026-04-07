@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMyCourses, getMyReceipts, downloadMyReceiptCsv } from "../api/auth";
 import { COURSE_MAP } from "../data/courses";
+import "../styles/mycourses.css";
 
 export default function MyCourses() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [receipts, setReceipts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isSyncing, setIsSyncing] = useState(true);
   const [error, setError] = useState("");
+  const [receiptError, setReceiptError] = useState("");
   const [welcomeNotice, setWelcomeNotice] = useState("");
 
   useEffect(() => {
@@ -20,58 +22,66 @@ export default function MyCourses() {
 
   useEffect(() => {
     const load = async () => {
-      try {
-        const token = localStorage.getItem("jwt");
-        if (!token) {
-          navigate("/login");
-          return;
-        }
+      const token = localStorage.getItem("jwt");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
 
-        const [courseData, receiptData] = await Promise.all([getMyCourses(), getMyReceipts()]);
+      try {
+        const courseData = await getMyCourses();
         setCourses(courseData?.purchasedCourses || []);
-        setReceipts(receiptData?.purchases || []);
       } catch (err) {
         setError(err.message || "Failed to load your courses.");
+      }
+
+      try {
+        const receiptData = await getMyReceipts();
+        setReceipts(receiptData?.purchases || []);
+      } catch (err) {
+        setReceiptError(err.message || "Could not load receipt history.");
       } finally {
-        setLoading(false);
+        setIsSyncing(false);
       }
     };
 
     load();
   }, [navigate]);
 
-  if (loading) {
-    return <div className="pricing-container"><div className="loading">Loading your courses...</div></div>;
-  }
-
   return (
-    <div className="pricing-container">
+    <div className="my-courses-page pricing-container">
       <div className="pricing-header">
         <h1>My Courses</h1>
         <p>Access your purchased courses and receipt history.</p>
       </div>
 
       {error && (
-        <div style={{ padding: "12px", marginBottom: "20px", borderRadius: "8px", background: "#fee", color: "#b91c1c" }}>
+        <div className="my-courses-alert my-courses-alert-error">
           {error}
         </div>
       )}
 
       {welcomeNotice && (
-        <div style={{ padding: "12px", marginBottom: "20px", borderRadius: "8px", background: "#e8fff3", color: "#0f5132", border: "1px solid #b7ebc8", fontWeight: 700 }}>
+        <div className="my-courses-alert my-courses-alert-success">
           {welcomeNotice}
         </div>
       )}
 
-      {courses.length === 0 ? (
-        <div className="no-courses">
+      {courses.length === 0 && !isSyncing ? (
+        <div className="my-courses-empty">
           <h3>No purchased courses yet</h3>
           <p>Buy a course to start learning.</p>
-          <button onClick={() => navigate("/pricing")}>Go to Pricing</button>
+          <button className="start-learning-btn" onClick={() => navigate("/pricing")}>Go to Pricing</button>
+        </div>
+      ) : isSyncing && courses.length === 0 ? (
+        <div className="my-courses-skeleton">
+          <div className="my-courses-skeleton-card" />
+          <div className="my-courses-skeleton-card" />
+          <div className="my-courses-skeleton-card" />
         </div>
       ) : (
         <div className="my-courses-grid">
-          {courses.map((courseId) => (
+          {courses.filter((courseId) => !!COURSE_MAP[courseId]).map((courseId) => (
             <div key={courseId} className="my-course-card">
               {COURSE_MAP[courseId]?.image && (
                 <img
@@ -95,18 +105,22 @@ export default function MyCourses() {
       )}
 
       <div className="my-courses-section">
-        <h2>Receipt History</h2>
-        <button className="start-learning-btn" onClick={downloadMyReceiptCsv}>Download Receipt CSV</button>
-        <div style={{ marginTop: "20px" }}>
-          {receipts.length === 0 ? (
-            <p>No receipts available yet.</p>
+        <div className="my-courses-section-head">
+          <h2>Receipt History</h2>
+          <button className="start-learning-btn" onClick={downloadMyReceiptCsv}>Download Receipt CSV</button>
+        </div>
+        <div className="my-courses-receipts">
+          {receiptError ? (
+            <p className="my-courses-empty-receipts">{receiptError}</p>
+          ) : receipts.length === 0 ? (
+            <p className="my-courses-empty-receipts">No receipts available yet.</p>
           ) : (
             receipts.map((item) => (
-              <div key={item._id} style={{ background: "#fff", borderRadius: "10px", padding: "12px", marginBottom: "10px" }}>
+              <div key={item._id} className="my-courses-receipt-card">
                 <strong>{COURSE_MAP[item.courseId]?.title || item.courseId}</strong>
-                <p style={{ margin: "4px 0" }}>Amount: ${item.amount} {String(item.currency || "usd").toUpperCase()}</p>
-                <p style={{ margin: "4px 0" }}>Status: {item.status}</p>
-                <p style={{ margin: "4px 0" }}>Date: {new Date(item.createdAt).toLocaleString()}</p>
+                <p>Amount: ${item.amount} {String(item.currency || "usd").toUpperCase()}</p>
+                <p>Status: {item.status}</p>
+                <p>Date: {new Date(item.createdAt).toLocaleString()}</p>
               </div>
             ))
           )}

@@ -15,6 +15,7 @@ import DragGame from "./pages/DragGame";
 import MyCourses from "./pages/MyCourses";
 import AdminPurchases from "./pages/AdminPurchases";
 import AlphabetTigrinya from "./pages/AlphabetTigrinya";
+import Profile from "./pages/Profile";
 import "./App.css";
 import { checkAdminAccess } from "./api/auth";
 
@@ -27,6 +28,7 @@ import "./styles/pricing.css";
 import "./styles/dashboard.css";
 import "./styles/lessons.css";
 import "./styles/responsive-global.css";
+import "./styles/profile.css";
 
 
 // Protected route wrapper - checks if user has purchased courses
@@ -134,6 +136,13 @@ function App() {
         <Route path="/" element={
           <ProtectedRoute>
             <Home />
+          </ProtectedRoute>
+        } />
+
+        {/* User profile */}
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         } />
 

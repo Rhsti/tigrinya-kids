@@ -7,7 +7,6 @@ import "../styles/pricing.css";
 export default function Pricing() {
   const didInitFetch = useRef(false);
   const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [buyingCourse, setBuyingCourse] = useState("");
   const [paymentConfig, setPaymentConfig] = useState({ paymentsEnabled: false, stripeMode: "unconfigured", checkoutMode: "offline" });
@@ -63,7 +62,6 @@ export default function Pricing() {
 
       if (!token || !backendOnline) {
         setCourses([]);
-        setLoading(false);
         return;
       }
 
@@ -72,8 +70,6 @@ export default function Pricing() {
         setCourses(purchasedCourses);
       } catch {
         setCourses([]);
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -161,14 +157,6 @@ export default function Pricing() {
 
   const isPurchased = (courseId) => courses.includes(courseId);
 
-  if (loading) {
-    return (
-      <div className="pricing-container">
-        <div className="loading">Loading courses...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="pricing-container">
       <div className="pricing-header">
@@ -197,7 +185,14 @@ export default function Pricing() {
             {course.popular && <span className="popular-badge">Most Popular</span>}
             {isPurchased(course.id) && <span className="purchased-badge">✓ Purchased</span>}
 
-            <img src={course.image} alt={`${course.title} artwork`} className="pricing-card-image" loading="lazy" />
+            <img
+              src={course.image}
+              alt={`${course.title} artwork`}
+              className="pricing-card-image"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
+            />
 
             <div className="pricing-meta-row">
               <span>{course.level}</span>
@@ -250,7 +245,13 @@ export default function Pricing() {
               const courseInfo = COURSE_CATALOG.find((c) => c.id === courseId);
               return courseInfo ? (
                 <div key={courseId} className="my-course-card">
-                  <img src={courseInfo.image} alt={`${courseInfo.title} artwork`} className="my-course-image" loading="lazy" />
+                  <img
+                    src={courseInfo.image}
+                    alt={`${courseInfo.title} artwork`}
+                    className="my-course-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <h3>{courseInfo.title}</h3>
                   <p>{courseInfo.description}</p>
                   <button

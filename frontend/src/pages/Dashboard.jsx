@@ -115,6 +115,7 @@ export default function Dashboard() {
       {/* Recommended Next Steps */}
       {purchasedCourses.length > 0 && (
         <div className="next-steps">
+
           <h2>Tigrinya Alphabet Learn</h2>
           <div className="next-lesson-card">
             <div className="lesson-icon">📝</div>

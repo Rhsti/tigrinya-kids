@@ -67,6 +67,29 @@ const getCourseById = async (courseId) => {
   };
 };
 
+const normalizeCourseIdentifier = (rawValue) => {
+  const value = String(rawValue || '').trim();
+  if (!value) return '';
+
+  const compact = value.toLowerCase();
+
+  // Accept historical aliases or title-like values stored in localStorage.
+  const aliasMap = {
+    basic: 'basic',
+    'basic tigrinya': 'basic',
+    intermediate: 'intermediate',
+    'intermediate tigrinya': 'intermediate',
+    advanced: 'advanced',
+    'advanced tigrinya': 'advanced',
+  };
+
+  if (aliasMap[compact]) {
+    return aliasMap[compact];
+  }
+
+  return compact;
+};
+
 const getActiveCourses = async () => {
   if (mongoose.connection.readyState === 1) {
     const dbCourses = await Course.find({ isActive: true }).sort({ price: 1 }).lean();
@@ -482,9 +505,14 @@ router.get('/admin/purchases/export.csv', authenticateToken, async (req, res) =>
 // POST /payment/create-stripe-session - Create Stripe checkout session
 router.post('/create-stripe-session', authenticateToken, async (req, res) => {
   try {
-    const { courseId, paymentMethod = 'card' } = req.body;
+    const { paymentMethod = 'card' } = req.body;
+    const courseId = normalizeCourseIdentifier(req.body?.courseId || req.body?.id || req.body?.course);
     const user = req.user;
     const allowedMethods = ['card'];
+
+    if (!courseId) {
+      return res.status(400).json({ message: 'Missing course id' });
+    }
 
     if (!allowedMethods.includes(paymentMethod)) {
       return res.status(400).json({ message: 'Invalid payment method' });
@@ -611,9 +639,14 @@ router.post('/create-stripe-session', authenticateToken, async (req, res) => {
 // GET /payment/verify/:courseId - Verify purchase
 router.get('/verify/:courseId', authenticateToken, async (req, res) => {
   try {
-    const { courseId } = req.params;
+    const courseId = normalizeCourseIdentifier(req.params.courseId);
     const { provider = 'stripe', session_id: sessionId } = req.query;
     const user = req.user;
+
+    if (!courseId) {
+      return res.status(400).json({ message: 'Missing course id' });
+    }
+
     const course = await getCourseById(courseId);
 
     if (!course) {
